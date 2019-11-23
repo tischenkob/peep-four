@@ -1,18 +1,18 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to самая красивая лаба" />
+    <TimeAndDate />
+    <router-link to="/main">start</router-link>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import TimeAndDate from "@/components/TimeAndDate.vue";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    TimeAndDate
   }
 };
 </script>

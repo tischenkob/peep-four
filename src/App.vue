@@ -1,32 +1,50 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+  <div id="app" class="app">
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css?family=Lato|Rubik&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(238, 238, 238);
+}
+
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  background-color: white;
+  width: 600px;
+  height: 300px;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  padding: 6px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgb(170, 170, 170);
 }
 
-#nav {
-  padding: 30px;
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.2s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>
