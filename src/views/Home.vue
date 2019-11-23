@@ -10,7 +10,7 @@
 import TimeAndDate from "@/components/TimeAndDate.vue";
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
     TimeAndDate
   }
