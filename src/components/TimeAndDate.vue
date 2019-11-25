@@ -10,18 +10,20 @@ export default {
   name: "TimeAndDate",
   data() {
     return {
-      time: "time 1000",
+      time: "",
       date: ""
     };
   },
   methods: {
-    // updateTime: function() {
-    //   let d = new Date();
-    //   this.time = d.getHours + ":" + d.getMinutes;
-    //   this.date = d.getDate;
-    // }
+    updateTime() {
+      let d = new Date();
+      this.time = d.getHours() + ":" + d.getMinutes();
+      this.date = d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear();
+    }
   },
-  mounted() {
+  created() {
+    this.updateTime();
+    setInterval(this.updateTime, 11000);
   }
 };
 </script>

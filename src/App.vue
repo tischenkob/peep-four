@@ -63,7 +63,7 @@ html {
 }
 
 .active {
-  color: rgb(42, 149, 236);
+  color: #2a95ec;
 }
 .icon-button {
   background: none;
@@ -75,6 +75,10 @@ html {
   justify-content: space-evenly;
 }
 .submit-button {
-  color: rgb(137, 236, 112);
+  color: white;
+  background-color: rgb(137, 236, 112);
+  height: 30px;
+  border-radius: 7px;
+  padding-top: 3px;
 }
 </style>

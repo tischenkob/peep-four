@@ -43,32 +43,49 @@
       <line y1="-100" y2="-100" x1="5" x2="-5" />
 
       <!-- circle -->
-      <circle cx="0" cy="0" :r="radius"></circle>
+      <clipPath id="clip-circle">
+        <polygon points="-125 -125 0 -125 0 0 -125 0" />
+      </clipPath>
+
+      <circle
+        cx="0"
+        cy="0"
+        :r="radius"
+        fill="#2a95ec"
+        clip-path="url(#clip-circle)"
+      />
       <!-- rectangle -->
-
+      <rect x="0" y="0" :width="radius" :height="radius / 2" fill="#2a95ec" />
       <!-- triangle -->
-
+      <polygon :points="-radius / 2 + ' 0 0 0 0 ' + radius" fill="#2a95ec" />
       <!-- dots -->
-      <circle :cx="entry.x * 20" :cy="-entry.y * 20" r="3" v-for="entry in entries" :key="entry.id" color=""></circle>
+      <dot
+        v-for="entry in entries"
+        :dot="entry"
+        :key="entry.id"
+        :radius="radius / 20"
+      />
     </svg>
   </div>
 </template>
 
 <script>
 import { eventBus } from "../main";
+import Dot from "./Dot.vue";
 
 export default {
   name: "CoordPlane",
   props: {
     radius: { type: String },
-    entries: []
+    entries: { type: Array }
   },
-  components: {},
+  components: { dot: Dot },
   created() {
     eventBus.$on("radiusChanged", value => {
       this.radius = value;
     });
-  }
+  },
+  methods: {}
 };
 </script>
 

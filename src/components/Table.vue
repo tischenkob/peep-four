@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <table>
     <div id="table" v-for="entry in entries" :key="entry.id">
-      <span>{{entry.x}}</span>
-      <span>{{entry.y}}</span>
-      <span>{{entry.r}}</span>
-      <span>{{entry.hit}}</span>
+      <td>{{ entry.x }}</td>
+      <td>{{ entry.y }}</td>
+      <td>{{ entry.r }}</td>
+      <td>{{ entry.hit }}</td>
     </div>
-  </div>
+  </table>
 </template>
 
 <script>
@@ -18,8 +18,15 @@ export default {
 };
 </script>
 
-<style scoped>
-#table {
+<style lang="scss" scoped>
+table {
   width: 250px;
+}
+#table {
+  width: 100%;
+  & td {
+    width: 25%;
+    text-align: center;
+  }
 }
 </style>

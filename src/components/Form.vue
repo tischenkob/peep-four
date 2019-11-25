@@ -11,7 +11,7 @@
       <option value="4">4</option>
       <option value="5">5</option>
     </select>
-    <input type="text" name="y" id="y-value" placeholder="[-3; 5]" />
+    <input ref="yField" type="text" name="y" id="y-value" placeholder="[-3; 5]" />
     <select name="r" ref="rVal" id="r-value" @change="changeR">
       <option value="-3">-3</option>
       <option value="-2">-2</option>
@@ -39,6 +39,9 @@ export default {
       let rad = this.$refs.rVal.value;
       eventBus.$emit("radiusChanged", 20 * rad + "");
     }
+  },
+  created(){
+    this.$refs.yField.$on()
   }
 };
 </script>

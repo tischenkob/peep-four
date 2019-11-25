@@ -13,7 +13,7 @@
     <div class="row">
       <CoordPlane id="coords" :entries="entries" />
       <keep-alive>
-        <component :is="currentTab" :entries="entries" ></component>
+        <component :is="currentTab" :entries="entries"></component>
       </keep-alive>
     </div>
   </div>
@@ -41,9 +41,9 @@ export default {
   methods: {
     getEntries() {
       let entries = [
-        { x: 1, y: 2, r: 3, hit: true },
-        { x: 2, y: 5, r: 1, hit: false },
-        { x: 3, y: 4, r: 2, hit: true },
+        { x: -1, y: 2, r: 3, hit: true },
+        { x: 2, y: -1, r: 1, hit: false },
+        { x: -3, y: -4, r: 2, hit: true },
         { x: 4, y: 3, r: 0, hit: false }
       ];
       return entries;
@@ -51,7 +51,7 @@ export default {
   },
   created() {
     this.entries = this.getEntries();
-  },
+  }
 };
 </script>
 
