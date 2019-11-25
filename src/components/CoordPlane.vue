@@ -1,6 +1,11 @@
 <template>
   <div id="coords">
-    <svg width="250" height="250" xmlns="http://www.w3.org/2000/svg" viewBox="-125 -125 250 250">
+    <svg
+      width="250"
+      height="250"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="-125 -125 250 250"
+    >
       <!-- axes -->
 
       <line x1="-125" x2="125" y1="0" y2="0" />
@@ -37,16 +42,33 @@
       <line y1="-80" y2="-80" x1="5" x2="-5" />
       <line y1="-100" y2="-100" x1="5" x2="-5" />
 
-      <!-- -->
+      <!-- circle -->
+      <circle cx="0" cy="0" :r="radius"></circle>
+      <!-- rectangle -->
+
+      <!-- triangle -->
+
+      <!-- dots -->
+      <circle :cx="entry.x * 20" :cy="-entry.y * 20" r="3" v-for="entry in entries" :key="entry.id" color=""></circle>
     </svg>
   </div>
 </template>
 
 <script>
+import { eventBus } from "../main";
+
 export default {
   name: "CoordPlane",
-  props: {},
-  components: {}
+  props: {
+    radius: { type: String },
+    entries: []
+  },
+  components: {},
+  created() {
+    eventBus.$on("radiusChanged", value => {
+      this.radius = value;
+    });
+  }
 };
 </script>
 
@@ -54,5 +76,8 @@ export default {
 svg {
   stroke: rgb(53, 53, 53);
   stroke-width: 2px;
+}
+circle {
+  color: blue;
 }
 </style>

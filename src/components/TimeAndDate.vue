@@ -8,8 +8,20 @@
 <script>
 export default {
   name: "TimeAndDate",
+  data() {
+    return {
+      time: "time 1000",
+      date: ""
+    };
+  },
   methods: {
-
+    // updateTime: function() {
+    //   let d = new Date();
+    //   this.time = d.getHours + ":" + d.getMinutes;
+    //   this.date = d.getDate;
+    // }
+  },
+  mounted() {
   }
 };
 </script>

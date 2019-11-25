@@ -6,6 +6,20 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      entries: [],
+      username: "",
+      password: "",
+      loggedIn: false
+    };
+  }
+};
+</script>
+
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lato|Rubik&display=swap");
 
@@ -46,5 +60,21 @@ html {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+.active {
+  color: rgb(42, 149, 236);
+}
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+}
+.row {
+  display: flex;
+  justify-content: space-evenly;
+}
+.submit-button {
+  color: rgb(137, 236, 112);
 }
 </style>
