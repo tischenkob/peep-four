@@ -45,8 +45,8 @@
 <script>
 export default {
   name: "CoordPlane",
-  props: [],
-  components: []
+  props: {},
+  components: {}
 };
 </script>
 

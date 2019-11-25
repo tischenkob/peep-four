@@ -1,15 +1,17 @@
- <template>
+<template>
   <div>
-    <span id="time">15:28</span> |
-    <span id="date">10/12/2019</span>
+    <span id="time"> {{ time }}</span> |
+    <span id="date">{{ date }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "TimeAndDate"
+  name: "TimeAndDate",
+  methods: {
+
+  }
 };
 </script>
 
-<style scoped language="scss">
-</style>
+<style scoped language="scss" />
