@@ -11,7 +11,13 @@
       <option value="4">4</option>
       <option value="5">5</option>
     </select>
-    <input ref="yField" type="text" name="y" id="y-value" placeholder="[-3; 5]" />
+    <input
+      ref="yField"
+      type="text"
+      name="y"
+      id="y-value"
+      placeholder="[-3; 5]"
+    />
     <select name="r" ref="rVal" id="r-value" @change="changeR">
       <option value="-3">-3</option>
       <option value="-2">-2</option>
@@ -38,10 +44,29 @@ export default {
     changeR() {
       let rad = this.$refs.rVal.value;
       eventBus.$emit("radiusChanged", 20 * rad + "");
+    },
+    limitY() {
+      let yField = this.$refs.yField;
+      let min = -3;
+      let max = 5;
+      let maxLength = 8;
+      yField.onkeypress = e => {
+        // Anything but numbers is blocked
+        if (!("+-1234567890.,".indexOf(e.key) >= 0)) return false;
+        // Blocked if too long
+        if (yField.value.length > maxLength) return false;
+        // Sign is blocked if length >= 1
+        if (yField.value.length >= 1 && "+-".indexOf(e.key) >= 0) return false;
+        // Separator is blocked if it exists
+        if (".,".indexOf(e.key) >= 0) return false;
+        // Blocked if out of bounds
+        if (+yField.value + +e.key > max || +yField.value + +e.key < min)
+          return false;
+      };
     }
   },
-  created(){
-    this.$refs.yField.$on()
+  mounted() {
+    this.limitY();
   }
 };
 </script>

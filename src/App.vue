@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="app">
+    <TimeAndDate />
     <transition name="fade" mode="out-in">
       <router-view />
     </transition>
@@ -7,8 +8,13 @@
 </template>
 
 <script>
+import TimeAndDate from "./components/TimeAndDate.vue";
+
 export default {
   name: "App",
+  components: {
+    TimeAndDate
+  },
   data() {
     return {
       entries: [],
