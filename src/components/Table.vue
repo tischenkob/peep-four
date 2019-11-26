@@ -6,7 +6,7 @@
       <th>r</th>
       <th>hit</th>
     </tr>
-    <tr id="table" v-for="entry in entries" :key="entry.id">
+    <tr id="table" v-for="entry in entries.slice(entries.length-9, entries.length)" :key="entry.id">
       <td>{{ entry.x }}</td>
       <td>{{ entry.y }}</td>
       <td>{{ entry.r }}</td>
