@@ -16,7 +16,6 @@ export default {
   },
   data() {
     return {
-      entries: [],
       username: "",
       password: "",
       loggedIn: false

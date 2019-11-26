@@ -1,6 +1,6 @@
 <template>
-  <form id="controls" v-on:submit.prevent>
-    <select name="x" id="x-value">
+  <form id="controls" @submit.prevent="submit">
+    <select name="x" ref="xVal" id="x-value">
       <option value="-3">-3</option>
       <option value="-2">-2</option>
       <option value="-1">-1</option>
@@ -41,6 +41,19 @@ import { eventBus } from "../main";
 export default {
   name: "Form",
   methods: {
+    submit(){
+      if (this.checkForm()) {
+        let entry = {
+          x: +this.$refs.xVal.value,
+          y: +this.$refs.yField.value,
+          r: +this.$refs.rVal.value
+        }
+        this.$emit("addentry", entry);
+      }
+    },
+    checkForm(){
+      return true;
+    },
     changeR() {
       let rad = this.$refs.rVal.value;
       eventBus.$emit("radiusChanged", 20 * rad + "");
