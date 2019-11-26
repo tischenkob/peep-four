@@ -1,9 +1,11 @@
 <template>
-  <div id="app" class="app">
+  <div>
     <TimeAndDate />
-    <transition name="fade" mode="out-in">
-      <router-view />
-    </transition>
+    <div id="app" class="app">
+      <transition name="fade" mode="out-in">
+        <router-view />
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -40,17 +42,17 @@ html {
   align-items: center;
   height: 100vh;
   background-color: rgb(238, 238, 238);
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
 #app {
   background-color: white;
   width: 600px;
   height: 300px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
   padding: 6px;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgb(170, 170, 170);

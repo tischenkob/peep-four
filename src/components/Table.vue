@@ -1,11 +1,11 @@
 <template>
   <table>
-    <div id="table" v-for="entry in entries" :key="entry.id">
+    <tr id="table" v-for="entry in entries" :key="entry.id">
       <td>{{ entry.x }}</td>
       <td>{{ entry.y }}</td>
       <td>{{ entry.r }}</td>
       <td>{{ entry.hit }}</td>
-    </div>
+    </tr>
   </table>
 </template>
 

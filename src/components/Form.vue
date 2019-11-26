@@ -54,9 +54,9 @@ export default {
         // Sign is blocked if length >= 1
         if (field.value.length >= 1 && "+-".indexOf(e.key) >= 0) return false;
         // Separator is blocked if it exists
-        if (".,".indexOf(e.key) >= 0) return false;
+        if (".,".indexOf(field.value) >= 0 && ".,".indexOf(e.key) >= 0 ) return false;
         // Blocked if out of bounds
-        if (+field.value + +e.key > max || +field.value + +e.key < min)
+        if (+("" + field.value + e.key) > max || +("" + field.value + e.key) < min)
           return false;
       };
     }

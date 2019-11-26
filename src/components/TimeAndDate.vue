@@ -1,7 +1,7 @@
 <template>
   <div>
-    <span id="time"> {{ time }}</span> |
-    <span id="date">{{ date }}</span>
+    <span id="date" :title="date">{{ day }}</span>
+    <span id="time"> {{ time }}</span>
   </div>
 </template>
 
@@ -11,7 +11,9 @@ export default {
   data() {
     return {
       time: "",
-      date: ""
+      date: "",
+      day: "",
+      week: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     };
   },
   methods: {
@@ -19,6 +21,7 @@ export default {
       let d = new Date();
       this.time = d.getHours() + ":" + d.getMinutes();
       this.date = d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear();
+      this.day = this.week[d.getDay() - 1];
     }
   },
   created() {
@@ -28,4 +31,9 @@ export default {
 };
 </script>
 
-<style scoped language="scss" />
+<style scoped language="scss">
+div {
+  position: relative;
+  bottom: -34px;
+}
+</style>
