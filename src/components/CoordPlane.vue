@@ -78,8 +78,12 @@ import Dot from "./Dot.vue";
 export default {
   name: "CoordPlane",
   props: {
-    radius: { type: Number },
     entries: { type: Array }
+  },
+  data() {
+    return {
+      radius: 0
+    };
   },
   components: { dot: Dot },
   created() {
@@ -99,7 +103,11 @@ export default {
       relY = -relY;
       let x = (relX / 125) * 6.25;
       let y = (relY / 125) * 6.25;
-      this.$emit("addentry", { x, y, r: this.radius });
+      x = +(x + "").substring(0, 5);
+      y = +(y + "").substring(0, 5);
+      let entry = { x, y };
+      entry.r = this.radius / 20 ;
+      this.$emit("addentry", entry);
     }
   },
   mounted() {}

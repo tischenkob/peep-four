@@ -12,7 +12,7 @@
       <option value="5">5</option>
     </select>
     <input
-      ref="yField"
+      ref="yVal"
       type="text"
       name="y"
       id="y-value"
@@ -41,18 +41,21 @@ import { eventBus } from "../main";
 export default {
   name: "Form",
   methods: {
-    submit(){
+    submit() {
       if (this.checkForm()) {
         let entry = {
           x: +this.$refs.xVal.value,
-          y: +this.$refs.yField.value,
+          y: +this.$refs.yVal.value,
           r: +this.$refs.rVal.value
-        }
+        };
         this.$emit("addentry", entry);
       }
     },
-    checkForm(){
-      return true;
+    checkForm() {
+      let xFine = this.$refs.xVal.value != null;
+      let yFine = +this.$refs.yVal.value + "" !== "";
+      let rFine = this.$refs.rVal.value != null;
+      return xFine && yFine && rFine;
     },
     changeR() {
       let rad = this.$refs.rVal.value;
@@ -86,7 +89,7 @@ export default {
     }
   },
   mounted() {
-    this.limitInput(this.$refs.yField, -3, 5, 8);
+    this.limitInput(this.$refs.yVal, -3, 5, 8);
   }
 };
 </script>
