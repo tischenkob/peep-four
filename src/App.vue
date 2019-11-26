@@ -1,6 +1,5 @@
 <template>
   <div>
-    <TimeAndDate />
     <div id="app" class="app">
       <transition name="fade" mode="out-in">
         <router-view />
@@ -10,12 +9,10 @@
 </template>
 
 <script>
-import TimeAndDate from "./components/TimeAndDate.vue";
 
 export default {
   name: "App",
   components: {
-    TimeAndDate
   },
   data() {
     return {
@@ -49,10 +46,15 @@ html {
   color: #2c3e50;
 }
 
+@media  {
+  
+}
+
 #app {
   background-color: white;
-  width: 600px;
-  height: 300px;
+  max-width: 600px;
+  min-width: 260px;
+  min-height: 300px;
   padding: 6px;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgb(170, 170, 170);
@@ -80,13 +82,32 @@ html {
 }
 .row {
   display: flex;
-  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+} 
+.around {
+  justify-content: space-around;
+}
+.between {
+  justify-content: space-between;
 }
 .submit-button {
   color: white;
   background-color: rgb(137, 236, 112);
   height: 30px;
-  border-radius: 7px;
+  border-radius: 5px;
   padding-top: 3px;
+}
+.link {
+  text-decoration: none;
+  color: #2a95ec;
+}
+ion-icon {
+  font-size: 24px;
+}
+#link-home ion-icon{
+  justify-self: flex-start;
+  font-size: 36px;
 }
 </style>
