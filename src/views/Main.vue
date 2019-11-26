@@ -45,12 +45,7 @@ export default {
   methods: {
     getEntries() {
       // TODO Query backend
-      let entries = [
-        { x: -1, y: 2, r: 3, hit: true },
-        { x: 2, y: -1, r: 1, hit: false },
-        { x: -3, y: -4, r: 2, hit: true },
-        { x: 4, y: 3, r: 0, hit: false }
-      ];
+      let entries = [];
       return entries;
     },
     addEntry(entry){

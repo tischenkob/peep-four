@@ -18,7 +18,7 @@
       id="y-value"
       placeholder="(-3 ; +5)"
     />
-    <select name="r" ref="rVal" id="r-value" @change="changeR">
+    <select name="r" ref="rVal" id="r-value" @change.prevent="changeR">
       <option value="-3" disabled="true">-3</option>
       <option value="-2" disabled="true">-2</option>
       <option value="-1" disabled="true">-1</option>
@@ -58,7 +58,9 @@ export default {
       return xFine && yFine && rFine;
     },
     changeR() {
-      let rad = this.$refs.rVal.value;
+      let r = this.$refs.rVal;
+      if (+r.value < 0) alert("stop, just stop");
+      let rad = r.value;
       eventBus.$emit("radiusChanged", 20 * rad + "");
     },
     limitInput(field, min, max, length) {

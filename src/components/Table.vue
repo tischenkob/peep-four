@@ -1,5 +1,11 @@
 <template>
   <table>
+    <tr>
+      <th>x</th>
+      <th>y</th>
+      <th>r</th>
+      <th>hit</th>
+    </tr>
     <tr id="table" v-for="entry in entries" :key="entry.id">
       <td>{{ entry.x }}</td>
       <td>{{ entry.y }}</td>
