@@ -1,11 +1,11 @@
 <template>
-  <div>
+
     <div id="app" class="app">
       <transition name="fade" mode="out-in">
         <router-view />
       </transition>
     </div>
-  </div>
+  
 </template>
 
 <script>
@@ -113,5 +113,9 @@ ion-icon {
 #link-home ion-icon {
   justify-self: flex-start;
   font-size: 36px;
+} 
+
+form {
+  height: 100%;
 }
 </style>

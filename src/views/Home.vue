@@ -10,7 +10,7 @@
     <br />
     <br />
     You are not logged in:<router-link class="link" to="/login"
-      >login</router-link
+      >log in</router-link
     >
     or <router-link class="link" to="/register">sign up</router-link>
     <br />
