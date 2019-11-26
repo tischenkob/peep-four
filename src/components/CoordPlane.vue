@@ -5,6 +5,8 @@
       height="250"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-125 -125 250 250"
+      ref="plane"
+      @click="graphClick"
     >
       <!-- axes -->
 
@@ -76,7 +78,7 @@ import Dot from "./Dot.vue";
 export default {
   name: "CoordPlane",
   props: {
-    radius: { type: String },
+    radius: { type: Number },
     entries: { type: Array }
   },
   components: { dot: Dot },
@@ -85,7 +87,22 @@ export default {
       this.radius = value;
     });
   },
-  methods: {}
+  methods: {
+    graphClick(click) {
+      let plane = this.$refs.plane;
+      let width = 250;
+      let height = 250;
+      let coordX = click.pageX - plane.getBoundingClientRect().left;
+      let coordY = click.pageY - plane.getBoundingClientRect().top;
+      let relX = coordX - width / 2;
+      let relY = coordY - height / 2;
+      relY = -relY;
+      let x = (relX / 125) * 6.25;
+      let y = (relY / 125) * 6.25;
+      this.$emit("addentry", { x, y, r: this.radius });
+    }
+  },
+  mounted() {}
 };
 </script>
 

@@ -32,6 +32,5 @@ export default {
 </script>
 
 <style scoped language="scss">
-div {
-}
+
 </style>

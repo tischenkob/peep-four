@@ -7,7 +7,7 @@ export default {
   name: "Dot",
   props: {
     dot: { type: Object },
-    radius: { type: String }
+    radius: { type: Number }
   },
   methods: {},
   computed: {

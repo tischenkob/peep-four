@@ -21,12 +21,22 @@ export default {
       password: "",
       loggedIn: false
     };
+  },
+  methods: {
+  },
+  mounted(){
   }
 };
 </script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lato|Rubik&display=swap");
+
+@media (min-width: 580px) {
+  #app {
+    min-width: 600px;
+  }
+}
 
 * {
   padding: 0;
@@ -46,14 +56,9 @@ html {
   color: #2c3e50;
 }
 
-@media  {
-  
-}
-
 #app {
   background-color: white;
-  max-width: 600px;
-  min-width: 260px;
+  width: 100%;
   min-height: 300px;
   padding: 6px;
   border-radius: 15px;
@@ -85,7 +90,7 @@ html {
   width: 100%;
   align-items: center;
   flex-wrap: wrap;
-} 
+}
 .around {
   justify-content: space-around;
 }
@@ -106,7 +111,7 @@ html {
 ion-icon {
   font-size: 24px;
 }
-#link-home ion-icon{
+#link-home ion-icon {
   justify-self: flex-start;
   font-size: 36px;
 }

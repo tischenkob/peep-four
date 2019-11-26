@@ -14,7 +14,7 @@
       </button>
     </div>
     <div class="row around">
-      <CoordPlane id="coords" :entries="entries" />
+      <CoordPlane id="coords" :entries="entries" @addentry="addEntry" />
       <keep-alive>
         <component :is="currentTab" :entries="entries"></component>
       </keep-alive>
@@ -44,6 +44,7 @@ export default {
   },
   methods: {
     getEntries() {
+      // TODO Query backend
       let entries = [
         { x: -1, y: 2, r: 3, hit: true },
         { x: 2, y: -1, r: 1, hit: false },
@@ -51,10 +52,17 @@ export default {
         { x: 4, y: 3, r: 0, hit: false }
       ];
       return entries;
+    },
+    addEntry(entry){
+      //TODO Query backend
+
+      this.entries.push(entry);
     }
   },
   created() {
     this.entries = this.getEntries();
+  },
+  mounted() {
   }
 };
 </script>
