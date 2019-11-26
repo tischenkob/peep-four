@@ -16,7 +16,7 @@
       type="text"
       name="y"
       id="y-value"
-      placeholder="[-3; 5]"
+      placeholder="(-3 ; +5)"
     />
     <select name="r" ref="rVal" id="r-value" @change="changeR">
       <option value="-3">-3</option>
@@ -53,10 +53,21 @@ export default {
         if (field.value.length > length) return false;
         // Sign is blocked if length >= 1
         if (field.value.length >= 1 && "+-".indexOf(e.key) >= 0) return false;
-        // Separator is blocked if it exists
-        if (".,".indexOf(field.value) >= 0 && ".,".indexOf(e.key) >= 0 ) return false;
+        // Separator is blocked if exists
+        if (
+          (field.value.indexOf(",") >= 0 ||
+            field.value.indexOf(".") >= 0 ||
+            field.value == "" ||
+            "+-".indexOf(field.value) >= 0) &&
+          ".,".indexOf(e.key) >= 0
+        ) {
+          return false;
+        }
         // Blocked if out of bounds
-        if (+("" + field.value + e.key) > max || +("" + field.value + e.key) < min)
+        if (
+          +("" + field.value + e.key) >= max ||
+          +("" + field.value + e.key) <= min
+        )
           return false;
       };
     }
