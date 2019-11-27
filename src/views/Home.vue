@@ -9,12 +9,16 @@
     <br />
     <br />
     <br />
-    You are not logged in:<router-link class="link" to="/login"
-      >log in</router-link
-    >
-    or <router-link class="link" to="/register">sign up</router-link>
-    <br />
-    <router-link class="link" to="/main">start</router-link>
+    <div v-if="this.$root.$data.loggedIn">
+      You are not logged in:<router-link class="link" to="/login"
+        >log in</router-link
+      >
+      or <router-link class="link" to="/register">sign up</router-link>
+    </div>
+    <div v-else>
+      You are logged in as: {{ this.$root.$data.username }} <br />
+      <router-link class="link" to="/main">start</router-link>
+    </div>
 
     <br />
     <br />

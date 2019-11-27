@@ -57,7 +57,7 @@ html {
 
 #app {
   background-color: white;
-  width: 100%;
+  width: 100vw;
   min-height: 300px;
   padding: 6px;
   border-radius: 15px;

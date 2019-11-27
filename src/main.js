@@ -11,5 +11,8 @@ export const eventBus = new Vue();
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  data: {
+    loggedIn: false
+  }
 }).$mount("#app");

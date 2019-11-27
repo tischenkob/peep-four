@@ -16,7 +16,11 @@
     <div class="row around">
       <CoordPlane id="coords" :entries="entries" @addentry="addEntry" />
       <keep-alive>
-        <component :is="currentTab" :entries="entries" @addentry="addEntry"></component>
+        <component
+          :is="currentTab"
+          :entries="entries"
+          @addentry="addEntry"
+        ></component>
       </keep-alive>
     </div>
   </div>
@@ -45,32 +49,31 @@ export default {
   methods: {
     getEntries() {
       // TODO Query backend
-      let entries = [];
 
-      // let adddress = "liza/api/"
-      // this.$http.get(adddress + "getEntries")
-      // .then((res) => {
-      //   entries = res.data;
-      // });
+      let address = "liza/api/"; // АДРЕС
+      this.$http.get(address + "getEntries").then(res => {
+        return res.data;
+      });
 
-      return entries;
+      return [];
     },
-    addEntry(entry){
+    addEntry(entry) {
       //TODO Query backend
 
-      // this.$http.post("addEntry", entry)
-      // .then((res) => {
-      //   this.entries.push(res.data);
-      // })
-      // .catch(alert("Error"))
-
-      this.entries.push(entry);
+      this.$http.post("addEntry", entry).then(res => {
+        this.entries.push(res.data);
+      });
     }
   },
   created() {
     this.entries = this.getEntries();
   },
-  mounted() {
+  mounted() {},
+  beforeRouteEnter(to, from, next) {
+    next(vue => {
+      if (vue.$root.$data.loggedIn) next(to);
+      else next("/login");
+    });
   }
 };
 </script>
