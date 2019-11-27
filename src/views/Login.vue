@@ -3,13 +3,15 @@
     <div class="row around">
       <TimeAndDate />
     </div>
-    <br><br>
+    <br /><br />
     <div class="row around">
-      <form @submit.prevent>
-        <label for="email">email</label> <br>
-        <input type="email" name="j_username" id="email" /> <br> <br>
-        <label for="password">password</label> <br>
-        <input type="password" name="j_password" id="password" /> <br> <br><br>
+      <form @submit.prevent="login">
+        <label for="email">email</label> <br />
+        <input type="email" name="j_username" id="email" /> <br />
+        <br />
+        <label for="password">password</label> <br />
+        <input type="password" name="j_password" id="password" /> <br />
+        <br /><br />
         <div class="row around">
           <router-link id="link-home" to="/">back</router-link>
           <button type="submit">log in</button>
@@ -26,6 +28,17 @@ export default {
   name: "Login",
   components: {
     TimeAndDate
+  },
+  methods: {
+    login() {
+      this.$http
+        .post("адрес") // АДРЕС 
+        .then(this.$router.push("main"))
+        .catch((data) => this.showError(data.message));
+    },
+    showError(msg) {
+      alert("an error" + msg);
+    }
   }
 };
 </script>

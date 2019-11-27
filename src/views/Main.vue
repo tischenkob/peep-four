@@ -46,10 +46,23 @@ export default {
     getEntries() {
       // TODO Query backend
       let entries = [];
+
+      // let adddress = "liza/api/"
+      // this.$http.get(adddress + "getEntries")
+      // .then((res) => {
+      //   entries = res.data;
+      // });
+
       return entries;
     },
     addEntry(entry){
       //TODO Query backend
+
+      // this.$http.post("addEntry", entry)
+      // .then((res) => {
+      //   this.entries.push(res.data);
+      // })
+      // .catch(alert("Error"))
 
       this.entries.push(entry);
     }

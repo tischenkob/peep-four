@@ -45,7 +45,7 @@ export default {
       if (this.checkForm()) {
         let entry = {
           x: +this.$refs.xVal.value,
-          y: +this.$refs.yVal.value,
+          y: +this.$refs.yVal.value.replace(",", "."),
           r: +this.$refs.rVal.value
         };
         this.$emit("addentry", entry);
@@ -53,13 +53,13 @@ export default {
     },
     checkForm() {
       let xFine = this.$refs.xVal.value != null;
-      let yFine = +this.$refs.yVal.value + "" !== "";
+      let yFine = this.$refs.yVal.value !== "";
       let rFine = this.$refs.rVal.value != null;
       return xFine && yFine && rFine;
     },
     changeR() {
       let r = this.$refs.rVal;
-      if (+r.value < 0) alert("stop, just stop");
+      if (r.value < 0) alert("stop, just stop");
       let rad = r.value;
       eventBus.$emit("radiusChanged", 20 * rad + "");
     },
