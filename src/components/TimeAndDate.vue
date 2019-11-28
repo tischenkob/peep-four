@@ -19,7 +19,12 @@ export default {
   methods: {
     updateTime() {
       let d = new Date();
-      this.time = (d.getHours() < 10 ? "0" : "") + d.getHours() + ":" + (d.getMinutes() < 10 ? "0" : "") + d.getMinutes();
+      this.time =
+        (d.getHours() < 10 ? "0" : "") +
+        d.getHours() +
+        ":" +
+        (d.getMinutes() < 10 ? "0" : "") +
+        d.getMinutes();
       this.date = d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear();
       this.day = this.week[d.getDay() - 1];
     }
@@ -31,6 +36,4 @@ export default {
 };
 </script>
 
-<style scoped language="scss">
-
-</style>
+<style scoped language="scss"></style>

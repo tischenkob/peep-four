@@ -2,7 +2,7 @@
   <div class="main">
     <div class="row around">
       <router-link id="link-home" to="/">
-        <ion-icon name="ios-arrow-round-back" alt="back" />
+        <ion-icon name="arrow-round-back" alt="back" />
       </router-link>
       <TimeAndDate />
       <button
@@ -60,7 +60,7 @@ export default {
     addEntry(entry) {
       //TODO Query backend
 
-      this.$http.post("addEntry", entry).then(res => {
+      this.$http.post("liza/api/addEntry", entry).then(res => {
         this.entries.push(res.data);
       });
     }
@@ -68,7 +68,6 @@ export default {
   created() {
     this.entries = this.getEntries();
   },
-  mounted() {},
   beforeRouteEnter(to, from, next) {
     next(vue => {
       if (vue.$root.$data.loggedIn) next(to);

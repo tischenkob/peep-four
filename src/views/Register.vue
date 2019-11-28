@@ -13,7 +13,7 @@
           type="email"
           name="j_username"
           id="email"
-          v-model="this.$root.$data.username"
+          ref="username"
         />
         <br />
         <br />
@@ -22,7 +22,7 @@
           type="password"
           name="j_password"
           id="password"
-          v-model="this.$root.$data.password"
+          ref="password"
         />
         <br />
         <br /><br />
@@ -46,15 +46,16 @@ export default {
   methods: {
     register() {
       this.$http
-        .post("address", { //ТУТ АДРЕС
-          username: this.$root.$data.username,
-          password: this.$root.$data.password
+        .post("liza/api/register", {
+          //ТУТ АДРЕС
+          username: this.$refs.username.value,
+          password: this.$refs.password.value
         })
         .then(() => {
           //showSuccess()
           this.$router.push("/login");
-        })
-        //catch
+        });
+      //catch
     }
   }
 };

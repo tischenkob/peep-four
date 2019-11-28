@@ -1,5 +1,5 @@
 <template>
-    <circle :cx="dot.x * 20" :cy="-dot.y * 20" r="3" :fill="color"></circle>
+  <circle :cx="dot.x * 20" :cy="-dot.y * 20" r="3" :fill="color"></circle>
 </template>
 
 <script>

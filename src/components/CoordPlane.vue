@@ -106,7 +106,7 @@ export default {
       x = +(x + "").substring(0, 5);
       y = +(y + "").substring(0, 5);
       let entry = { x, y };
-      entry.r = this.radius / 20 ;
+      entry.r = this.radius / 20;
       this.$emit("addentry", entry);
     }
   },

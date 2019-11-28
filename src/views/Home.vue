@@ -9,14 +9,15 @@
     <br />
     <br />
     <br />
-    <div v-if="this.$root.$data.loggedIn">
+    <div v-if="!this.$root.$data.loggedIn">
       You are not logged in:<router-link class="link" to="/login"
         >log in</router-link
       >
       or <router-link class="link" to="/register">sign up</router-link>
     </div>
     <div v-else>
-      You are logged in as: {{ this.$root.$data.username }} <br />
+      You are logged in as: {{ username }} <br />
+      <button @click="logout">log out</button> <br />
       <router-link class="link" to="/main">start</router-link>
     </div>
 
@@ -39,6 +40,18 @@ export default {
     return {
       info: "p3200 · 200032 \n front - Тищенко \n back - Борисенко"
     };
+  },
+  methods: {
+    logout() {
+      this.$root.$data.loggedIn = false;
+    }
+  },
+  computed: {
+    username() {
+      return this.$root.$data.username;
+    }
   }
 };
 </script>
+
+<style scoped></style>

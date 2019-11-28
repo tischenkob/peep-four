@@ -1,30 +1,17 @@
 <template>
-
-    <div id="app" class="app">
-      <transition name="fade" mode="out-in">
-        <router-view />
-      </transition>
-    </div>
-  
+  <div id="app" class="app">
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
+  </div>
 </template>
 
 <script>
-
 export default {
   name: "App",
-  components: {
-  },
-  data() {
-    return {
-      username: "",
-      password: "",
-      loggedIn: false
-    };
-  },
-  methods: {
-  },
-  mounted(){
-  }
+  components: {},
+  methods: {},
+  mounted() {}
 };
 </script>
 
@@ -57,7 +44,7 @@ html {
 
 #app {
   background-color: white;
-  width: 100vw;
+  width: 100%;
   min-height: 300px;
   padding: 6px;
   border-radius: 15px;
@@ -113,7 +100,7 @@ ion-icon {
 #link-home ion-icon {
   justify-self: flex-start;
   font-size: 36px;
-} 
+}
 
 form {
   height: 100%;
