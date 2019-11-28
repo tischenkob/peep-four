@@ -37,6 +37,7 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
+import axios from "axios";
 
 export default {
   name: "Login",
@@ -45,7 +46,7 @@ export default {
   },
   methods: {
     login() {
-      this.axios
+      axios
         .post("адрес", {
           username: this.$refs.username.value,
           password: this.$refs.password.value
@@ -57,14 +58,9 @@ export default {
           this.$router.push("/main");
         })
         .catch(data => this.showError(data.message));
-
-      // this.$root.$data.username = this.$refs.username.value;
-      // this.$root.$data.password = this.$refs.password.value;
-      // this.$root.$data.loggedIn = true;
-      // this.$router.push("/main");
     },
     showError(msg) {
-      alert("an error" + msg);
+      alert("an error\n" + msg);
     }
   }
 };
