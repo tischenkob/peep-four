@@ -2,8 +2,13 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import axios from "axios";
-Vue.config.productionTip = false;
+import VueToast from "vue-toast-notification";
+import "vue-toast-notification/dist/index.css";
 
+Vue.config.productionTip = false;
+Vue.use(VueToast, {
+  position: "top-left"
+});
 Vue.use(axios);
 
 export const eventBus = new Vue();

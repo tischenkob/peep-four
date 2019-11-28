@@ -52,15 +52,15 @@ export default {
         .then(res => {
           return res.data;
         })
-        .catch(res => {
-          alert(res.data);
+        .catch(err => {
+          this.$root.$toast.error(
+            "Could not get history, reason:\n" + err.message
+          );
         });
 
       return [];
     },
     addEntry(entry) {
-      //TODO Query backend
-
       axios
         .post(this.$root.$data.BACKEND_URL + "addEntry", {
           x: entry.x,
@@ -71,8 +71,13 @@ export default {
         })
         .then(res => {
           this.entries.push(res.data);
+          this.$root.$toast.success("Entry added!");
         })
-        .catch(res => alert(res.data));
+        .catch(err =>
+          this.$root.$toast.error(
+            "Could not log calculate, reason:\n" + err.message
+          )
+        );
     }
   },
   created() {

@@ -18,9 +18,17 @@ export default {
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lato|Rubik&display=swap");
 
-@media (min-width: 580px) {
+@media (max-width: 600px) {
+  html {
+    height: 100vh;
+  }
+  body {
+    height: 100vh;
+  }
   #app {
-    min-width: 600px;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
@@ -34,6 +42,7 @@ html {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100%;
   background-color: rgb(238, 238, 238);
   font-family: "Lato", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -41,11 +50,15 @@ html {
   text-align: center;
   color: #2c3e50;
 }
-
+body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 #app {
   background-color: white;
-  width: 100%;
   min-height: 300px;
+  width: 600px;
   padding: 6px;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgb(170, 170, 170);

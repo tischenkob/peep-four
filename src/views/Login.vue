@@ -47,11 +47,11 @@ export default {
           this.$root.$data.password = this.$refs.password.value;
           this.$root.$data.loggedIn = true;
           this.$router.push("/main");
+          this.$root.$toast.success("Logged in!");
         })
-        .catch(data => this.showError(data.message));
-    },
-    showError(msg) {
-      alert("an error\n" + msg);
+        .catch(err =>
+          this.$root.$toast.error("Could not log in, reason:\n" + err.message)
+        );
     }
   }
 };

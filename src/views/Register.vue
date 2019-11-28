@@ -41,15 +41,16 @@ export default {
     register() {
       axios
         .post(this.$root.$data.BACKEND_URL + "register", {
-          //ТУТ АДРЕС
           username: this.$refs.username.value,
           password: this.$refs.password.value
         })
         .then(() => {
-          //showSuccess()
           this.$router.push("/login");
+          this.$root.$toast.info("Success! Now log in");
         })
-        .catch(res => alert(res.data));
+        .catch(err =>
+          this.$root.$toast.error("Could not register, reason:\n" + err.message)
+        );
       //catch
     }
   }
