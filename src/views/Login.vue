@@ -7,11 +7,23 @@
     <div class="row around">
       <form @submit.prevent="login">
         <label for="email">email</label> <br />
-        <input ref="username" type="email" name="j_username" id="email" />
+        <input
+          ref="username"
+          type="email"
+          name="j_username"
+          id="email"
+          required="required"
+        />
         <br />
         <br />
         <label for="password">password</label> <br />
-        <input ref="password" type="password" name="j_password" id="password" />
+        <input
+          ref="password"
+          type="password"
+          name="j_password"
+          id="password"
+          required="required"
+        />
         <br />
         <br /><br />
         <div class="row around">

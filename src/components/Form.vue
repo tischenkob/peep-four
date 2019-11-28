@@ -17,6 +17,7 @@
       name="y"
       id="y-value"
       placeholder="(-3 ; +5)"
+      required="required"
     />
     <select name="r" ref="rVal" id="r-value" @change.prevent="changeR">
       <option value="-3" disabled="true">-3</option>
