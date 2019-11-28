@@ -10,14 +10,18 @@
     <br />
     <br />
     <div v-if="!this.$root.$data.loggedIn">
-      You are not logged in:<router-link class="link" to="/login"
-        >log in</router-link
-      >
-      or <router-link class="link" to="/register">sign up</router-link>
+      You are not logged in:
+      <router-link class="link" to="/login">log in</router-link>
+      <span style="margin: 0 5px;">or</span>
+      <router-link class="link" to="/register">sign up</router-link>
     </div>
     <div v-else>
-      You are logged in as: {{ username }} <br />
-      <button @click="logout">log out</button> <br />
+      You are logged in as: {{ username }}
+      <br />
+      <button @click="logout" class="link">
+        <ion-icon name="log-out" :title="logout"></ion-icon>
+      </button>
+      <br />
       <router-link class="link" to="/main">start</router-link>
     </div>
 

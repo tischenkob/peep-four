@@ -109,6 +109,11 @@ body {
 }
 .link {
   text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  background: none;
+  letter-spacing: 0.6px;
+  border: none;
   color: #2a95ec;
 }
 ion-icon {
@@ -121,5 +126,14 @@ ion-icon {
 
 form {
   height: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  text-align: center;
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid #2c3e5056;
 }
 </style>

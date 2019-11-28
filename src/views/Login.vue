@@ -18,8 +18,10 @@
         <br />
         <br />
         <div class="row around">
-          <router-link id="link-home" to="/">back</router-link>
-          <button type="submit">log in</button>
+          <router-link class="link" id="link-home" to="/">
+            <ion-icon name="arrow-round-back" alt="back" />
+          </router-link>
+          <button class="link" type="submit">log in</button>
         </div>
       </form>
     </div>
