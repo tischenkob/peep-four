@@ -39,7 +39,6 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
-import axios from "axios";
 
 export default {
   name: "Register",
@@ -48,7 +47,7 @@ export default {
   },
   methods: {
     register() {
-      axios
+      this.axios
         .post("liza/api/register", {
           //ТУТ АДРЕС
           username: this.$refs.username.value,

@@ -1,11 +1,10 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import resource from "vue-resource";
-
+import axios from "axios";
 Vue.config.productionTip = false;
 
-Vue.use(resource);
+Vue.use(axios);
 
 export const eventBus = new Vue();
 

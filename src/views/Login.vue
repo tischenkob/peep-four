@@ -37,7 +37,6 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
-import axios from "axios";
 
 export default {
   name: "Login",
@@ -46,7 +45,7 @@ export default {
   },
   methods: {
     login() {
-      axios
+      this.axios
         .post("адрес", {
           username: this.$refs.username.value,
           password: this.$refs.password.value
