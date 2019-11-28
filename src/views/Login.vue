@@ -6,26 +6,17 @@
     <br />
     <div class="row around">
       <form @submit.prevent="login">
-        <label for="email">email</label> <br />
-        <input
-          ref="username"
-          type="email"
-          name="j_username"
-          id="email"
-          required="required"
-        />
+        <label for="email">email</label>
+        <br />
+        <input ref="username" type="email" name="j_username" id="email" required="required" />
         <br />
         <br />
-        <label for="password">password</label> <br />
-        <input
-          ref="password"
-          type="password"
-          name="j_password"
-          id="password"
-          required="required"
-        />
+        <label for="password">password</label>
         <br />
-        <br /><br />
+        <input ref="password" type="password" name="j_password" id="password" required="required" />
+        <br />
+        <br />
+        <br />
         <div class="row around">
           <router-link id="link-home" to="/">back</router-link>
           <button type="submit">log in</button>
@@ -47,7 +38,7 @@ export default {
   methods: {
     login() {
       axios
-        .post("адрес", {
+        .post(this.$root.$data.BACKEND_URL + "login", {
           username: this.$refs.username.value,
           password: this.$refs.password.value
         }) // АДРЕС

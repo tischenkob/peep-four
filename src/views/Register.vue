@@ -8,26 +8,17 @@
 
     <div class="row around">
       <form @submit.prevent="register">
-        <label for="email">email</label> <br />
-        <input
-          type="email"
-          name="j_username"
-          id="email"
-          ref="username"
-          required="required"
-        />
+        <label for="email">email</label>
+        <br />
+        <input type="email" name="j_username" id="email" ref="username" required="required" />
         <br />
         <br />
-        <label for="password">password</label> <br />
-        <input
-          type="password"
-          name="j_password"
-          id="password"
-          ref="password"
-          required="required"
-        />
+        <label for="password">password</label>
         <br />
-        <br /><br />
+        <input type="password" name="j_password" id="password" ref="password" required="required" />
+        <br />
+        <br />
+        <br />
         <div class="row around">
           <router-link id="link-home" to="/">back</router-link>
           <button type="submit">sign up</button>
@@ -49,7 +40,7 @@ export default {
   methods: {
     register() {
       axios
-        .post("liza/api/register", {
+        .post(this.$root.$data.BACKEND_URL + "register", {
           //ТУТ АДРЕС
           username: this.$refs.username.value,
           password: this.$refs.password.value

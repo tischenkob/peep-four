@@ -16,11 +16,7 @@
     <div class="row around">
       <CoordPlane id="coords" :entries="entries" @addentry="addEntry" />
       <keep-alive>
-        <component
-          :is="currentTab"
-          :entries="entries"
-          @addentry="addEntry"
-        ></component>
+        <component :is="currentTab" :entries="entries" @addentry="addEntry"></component>
       </keep-alive>
     </div>
   </div>
@@ -51,9 +47,8 @@ export default {
     getEntries() {
       // TODO Query backend
 
-      let address = "liza/api/"; // АДРЕС
       axios
-        .get(address + "getEntries")
+        .get(this.$root.$data.BACKEND_URL + "getEntries")
         .then(res => {
           return res.data;
         })
@@ -67,7 +62,7 @@ export default {
       //TODO Query backend
 
       axios
-        .post("liza/api/addEntry", {
+        .post(this.$root.$data.BACKEND_URL + "addEntry", {
           x: entry.x,
           y: entry.y,
           r: entry.r,

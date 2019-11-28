@@ -14,6 +14,7 @@ new Vue({
   data: {
     username: "",
     password: "",
-    loggedIn: false
+    loggedIn: false,
+    BACKEND_URL: "se.ifmo.ru/s265063/web4/api/"
   }
 }).$mount("#app");
