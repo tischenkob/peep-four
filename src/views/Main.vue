@@ -80,13 +80,16 @@ export default {
         );
     }
   },
-  created() {
+  mounted() {
     this.entries = this.getEntries();
   },
   beforeRouteEnter(to, from, next) {
     next(vue => {
       if (vue.$root.$data.loggedIn) next(to);
-      else next("/login");
+      else {
+        next("/login");
+        this.$toast.info("Log in first");
+      }
     });
   }
 };

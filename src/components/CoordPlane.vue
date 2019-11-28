@@ -49,24 +49,13 @@
         <polygon points="-125 -125 0 -125 0 0 -125 0" />
       </clipPath>
 
-      <circle
-        cx="0"
-        cy="0"
-        :r="radius"
-        fill="#2a95ec"
-        clip-path="url(#clip-circle)"
-      />
+      <circle cx="0" cy="0" :r="radius" fill="#2a95ec" clip-path="url(#clip-circle)" />
       <!-- rectangle -->
       <rect x="0" y="0" :width="radius" :height="radius / 2" fill="#2a95ec" />
       <!-- triangle -->
       <polygon :points="-radius / 2 + ' 0 0 0 0 ' + radius" fill="#2a95ec" />
       <!-- dots -->
-      <dot
-        v-for="entry in entries"
-        :dot="entry"
-        :key="entry.id"
-        :radius="radius / 20"
-      />
+      <dot v-for="entry in entries" :dot="entry" :key="entry.id" :radius="radius / 20" />
     </svg>
   </div>
 </template>

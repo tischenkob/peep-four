@@ -55,8 +55,9 @@ export default {
   },
   methods: {
     logout() {
+      // TEST
       this.$root.$data.loggedIn = false;
-
+      // /
       axios
         .get(this.$root.$data.BACKEND_URL + "logout") // АДРЕС
         .then(() => {

@@ -11,14 +11,7 @@
       <option value="4">4</option>
       <option value="5">5</option>
     </select>
-    <input
-      ref="yVal"
-      type="text"
-      name="y"
-      id="y-value"
-      placeholder="(-3 ; +5)"
-      required="required"
-    />
+    <input ref="yVal" type="text" name="y" id="y-value" placeholder="(-3 ; +5)" required="required" />
     <select name="r" ref="rVal" id="r-value" @change.prevent="changeR">
       <option value="-3" disabled="true">-3</option>
       <option value="-2" disabled="true">-2</option>
@@ -97,7 +90,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 form {
   display: inline-flex;
   flex-direction: column;
