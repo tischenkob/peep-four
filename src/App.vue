@@ -91,6 +91,7 @@ body {
 .row {
   display: flex;
   width: 100%;
+  min-height: 24px;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -108,9 +109,10 @@ body {
   padding-top: 3px;
 }
 .link {
+  height: 15px;
   text-decoration: none;
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 600;
   background: none;
   letter-spacing: 0.6px;
   border: none;
@@ -120,8 +122,8 @@ ion-icon {
   font-size: 24px;
 }
 #link-home ion-icon {
-  justify-self: flex-start;
-  font-size: 36px;
+  position: relative;
+  top: -2px;
 }
 
 form {

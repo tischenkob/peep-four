@@ -10,12 +10,24 @@
       <form @submit.prevent="register">
         <label for="email">email</label>
         <br />
-        <input type="email" name="j_username" id="email" ref="username" required="required" />
+        <input
+          type="email"
+          name="j_username"
+          id="email"
+          ref="username"
+          required="required"
+        />
         <br />
         <br />
         <label for="password">password</label>
         <br />
-        <input type="password" name="j_password" id="password" ref="password" required="required" />
+        <input
+          type="password"
+          name="j_password"
+          id="password"
+          ref="password"
+          required="required"
+        />
         <br />
         <br />
         <br />
@@ -23,7 +35,7 @@
           <router-link class="link" id="link-home" to="/">
             <ion-icon name="arrow-round-back" alt="back" />
           </router-link>
-          <button type="submit" class="link">register</button>
+          <button type="submit" class="link">SIGN UP</button>
         </div>
       </form>
     </div>

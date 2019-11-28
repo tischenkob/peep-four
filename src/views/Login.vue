@@ -8,12 +8,24 @@
       <form @submit.prevent="login">
         <label for="email">email</label>
         <br />
-        <input ref="username" type="email" name="j_username" id="email" required="required" />
+        <input
+          ref="username"
+          type="email"
+          name="j_username"
+          id="email"
+          required="required"
+        />
         <br />
         <br />
         <label for="password">password</label>
         <br />
-        <input ref="password" type="password" name="j_password" id="password" required="required" />
+        <input
+          ref="password"
+          type="password"
+          name="j_password"
+          id="password"
+          required="required"
+        />
         <br />
         <br />
         <br />
@@ -21,7 +33,7 @@
           <router-link class="link" id="link-home" to="/">
             <ion-icon name="arrow-round-back" alt="back" />
           </router-link>
-          <button class="link" type="submit">log in</button>
+          <button class="link" type="submit">LOG IN</button>
         </div>
       </form>
     </div>
@@ -58,5 +70,3 @@ export default {
   }
 };
 </script>
-
-<style></style>

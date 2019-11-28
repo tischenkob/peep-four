@@ -16,7 +16,11 @@
     <div class="row around">
       <CoordPlane id="coords" :entries="entries" @addentry="addEntry" />
       <keep-alive>
-        <component :is="currentTab" :entries="entries" @addentry="addEntry"></component>
+        <component
+          :is="currentTab"
+          :entries="entries"
+          @addentry="addEntry"
+        ></component>
       </keep-alive>
     </div>
   </div>
