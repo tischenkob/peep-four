@@ -31,6 +31,7 @@ import CoordPlane from "../components/CoordPlane.vue";
 import Form from "../components/Form.vue";
 import TimeAndDate from "../components/TimeAndDate.vue";
 import Table from "../components/Table.vue";
+import axios from "axios";
 
 export default {
   name: "Main",
@@ -51,16 +52,21 @@ export default {
       // TODO Query backend
 
       let address = "liza/api/"; // АДРЕС
-      this.$http.get(address + "getEntries").then(res => {
-        return res.data;
-      });
+      axios
+        .get(address + "getEntries")
+        .then(res => {
+          return res.data;
+        })
+        .catch(res => {
+          alert(res.data);
+        });
 
       return [];
     },
     addEntry(entry) {
       //TODO Query backend
 
-      this.$http
+      axios
         .post("liza/api/addEntry", {
           x: entry.x,
           y: entry.y,
@@ -70,7 +76,8 @@ export default {
         })
         .then(res => {
           this.entries.push(res.data);
-        });
+        })
+        .catch(res => alert(res.data));
     }
   },
   created() {

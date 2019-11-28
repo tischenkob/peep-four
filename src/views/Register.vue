@@ -9,21 +9,11 @@
     <div class="row around">
       <form @submit.prevent="register">
         <label for="email">email</label> <br />
-        <input
-          type="email"
-          name="j_username"
-          id="email"
-          ref="username"
-        />
+        <input type="email" name="j_username" id="email" ref="username" />
         <br />
         <br />
         <label for="password">password</label> <br />
-        <input
-          type="password"
-          name="j_password"
-          id="password"
-          ref="password"
-        />
+        <input type="password" name="j_password" id="password" ref="password" />
         <br />
         <br /><br />
         <div class="row around">
@@ -37,6 +27,7 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
+import axios from "axios";
 
 export default {
   name: "Register",
@@ -45,7 +36,7 @@ export default {
   },
   methods: {
     register() {
-      this.$http
+      axios
         .post("liza/api/register", {
           //ТУТ АДРЕС
           username: this.$refs.username.value,
@@ -54,7 +45,8 @@ export default {
         .then(() => {
           //showSuccess()
           this.$router.push("/login");
-        });
+        })
+        .catch(res => alert(res.data));
       //catch
     }
   }
