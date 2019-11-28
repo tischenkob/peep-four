@@ -36,6 +36,7 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
+import axios from "axios";
 
 export default {
   name: "Home",
@@ -48,6 +49,16 @@ export default {
   methods: {
     logout() {
       this.$root.$data.loggedIn = false;
+
+      axios
+        .get(this.$root.$data.BACKEND_URL + "logout") // АДРЕС
+        .then(() => {
+          this.$root.$data.loggedIn = false;
+          this.$root.$toast.info("Logged out.");
+        })
+        .catch(err =>
+          this.$root.$toast.error("Could not log out, reason:\n" + err.message)
+        );
     }
   },
   computed: {

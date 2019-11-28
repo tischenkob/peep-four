@@ -39,11 +39,11 @@ export default {
   },
   methods: {
     login() {
+      let formData = new FormData();
+      formData.append("username", this.$refs.username.value);
+      formData.append("password", this.$refs.password.value);
       axios
-        .post(this.$root.$data.BACKEND_URL + "login", {
-          username: this.$refs.username.value,
-          password: this.$refs.password.value
-        }) // АДРЕС
+        .post(this.$root.$data.BACKEND_URL + "login", formData) // АДРЕС
         .then(() => {
           this.$root.$data.username = this.$refs.username.value;
           this.$root.$data.password = this.$refs.password.value;

@@ -41,11 +41,11 @@ export default {
   },
   methods: {
     register() {
+      let formData = new FormData();
+      formData.append("username", this.$refs.username.value);
+      formData.append("password", this.$refs.password.value);
       axios
-        .post(this.$root.$data.BACKEND_URL + "register", {
-          username: this.$refs.username.value,
-          password: this.$refs.password.value
-        })
+        .post(this.$root.$data.BACKEND_URL + "register", formData)
         .then(() => {
           this.$router.push("/login");
           this.$root.$toast.info("Success! Now log in");
