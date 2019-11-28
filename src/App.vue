@@ -18,7 +18,7 @@ export default {
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lato|Rubik&display=swap");
 
-@media (max-width: 600px) {
+@media (max-height: 666px) and (max-width: 374px) {
   html {
     height: 100vh;
   }
@@ -26,9 +26,13 @@ export default {
     height: 100vh;
   }
   #app {
-    width: 100%;
     border-radius: 0;
     box-shadow: none;
+  }
+}
+@media (max-width: 600px) {
+  #app {
+    width: 100%;
   }
 }
 
