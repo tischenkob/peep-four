@@ -1,22 +1,18 @@
 import Vue from "vue";
-import Vuex from "vuex";
 import App from "./App.vue";
 import router from "./router";
 import axios from "axios";
 import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/index.css";
+import store from "./store";
 
 Vue.config.productionTip = false;
 Vue.use(VueToast, {
   position: "top-left"
 });
 Vue.use(axios);
-Vue.use(Vuex);
 export const eventBus = new Vue();
-const store = new Vuex.Store({
-  state: {},
-  mutations: {}
-});
+
 new Vue({
   router,
   render: h => h(App),
