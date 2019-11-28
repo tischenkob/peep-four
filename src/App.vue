@@ -89,11 +89,13 @@ body {
   font-size: 1.4em;
 }
 .row {
-  display: flex;
-  width: 100%;
-  min-height: 24px;
-  align-items: center;
+  display: inline-flex;
+  align-content: center;
   flex-wrap: wrap;
+}
+.column {
+  display: flex;
+  flex-direction: column;
 }
 .around {
   justify-content: space-around;
@@ -128,6 +130,10 @@ ion-icon {
 
 form {
   height: 100%;
+}
+
+form .row {
+  width: 100%;
 }
 
 input[type="text"],

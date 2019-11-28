@@ -40,6 +40,21 @@ export default {
   },
   methods: {
     login() {
+      // FOR TEST ACCESS
+
+      if (
+        this.$refs.username.value == "admin@admin.ru" ||
+        this.$refs.password.value == "123"
+      ) {
+        this.$root.$data.username = this.$refs.username.value;
+        this.$root.$data.password = this.$refs.password.value;
+        this.$root.$data.loggedIn = true;
+        this.$router.push("/main");
+        return;
+      }
+
+      // /
+
       let formData = new FormData();
       formData.append("username", this.$refs.username.value);
       formData.append("password", this.$refs.password.value);

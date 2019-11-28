@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div class="row around">
+    <div class="row around max">
       <router-link id="link-home" to="/">
         <ion-icon name="arrow-round-back" alt="back" />
       </router-link>
@@ -16,11 +16,7 @@
     <div class="row around">
       <CoordPlane id="coords" :entries="entries" @addentry="addEntry" />
       <keep-alive>
-        <component
-          :is="currentTab"
-          :entries="entries"
-          @addentry="addEntry"
-        ></component>
+        <component :is="currentTab" :entries="entries" @addentry="addEntry"></component>
       </keep-alive>
     </div>
   </div>
@@ -96,4 +92,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="css">
+#history-button {
+  position: relative;
+  top: -2px;
+}
+
+.max {
+  width: 100%;
+}
+</style>
