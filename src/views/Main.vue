@@ -60,9 +60,17 @@ export default {
     addEntry(entry) {
       //TODO Query backend
 
-      this.$http.post("liza/api/addEntry", entry).then(res => {
-        this.entries.push(res.data);
-      });
+      this.$http
+        .post("liza/api/addEntry", {
+          x: entry.x,
+          y: entry.y,
+          r: entry.r,
+          username: this.$refs.username.value,
+          password: this.$refs.password.value
+        })
+        .then(res => {
+          this.entries.push(res.data);
+        });
     }
   },
   created() {
