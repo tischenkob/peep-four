@@ -10,7 +10,7 @@
     <br />
     <br />
     <div class="column">
-      <div v-if="!this.$root.$data.loggedIn">
+      <div v-if="!isAuthenticated">
         You are not logged in:
         <router-link class="link" to="/login">log in</router-link>
         <span style="margin: 0 5px;">or</span>
@@ -43,7 +43,6 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
-import axios from "axios";
 
 export default {
   name: "Home",
@@ -56,23 +55,21 @@ export default {
   methods: {
     logout() {
       // TEST
-      this.$root.$data.loggedIn = false;
+      this.$store.isAuthenticated = false;
       // /
-      axios
-        .get(this.$root.$data.BACKEND_URL + "logout") // АДРЕС
-        .then(() => {
-          this.$root.$data.loggedIn = false;
-          this.$root.$toast.info("Logged out.");
-        })
-        .catch(err =>
-          this.$root.$toast.error("Could not log out, reason:\n" + err.message)
-        );
+      this.$store.dispatch("LOGOUT");
     }
   },
   computed: {
     username() {
-      return this.$root.$data.username;
+      return this.$store.username;
+    },
+    isAuthenticated() {
+      return this.$store.isAuthenticated;
     }
+  },
+  mounted() {
+    () => alert(this.$store.BACKEND_URL);
   }
 };
 </script>

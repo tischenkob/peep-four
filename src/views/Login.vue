@@ -9,13 +9,24 @@
       <form @submit.prevent="login">
         <label for="email">email</label>
         <br />
-        <input ref="username" v-model="username" type="email" id="email" required="required" />
-        <span>{{this.username}}</span>
+        <input
+          ref="username"
+          v-model="username"
+          type="email"
+          id="email"
+          required="required"
+        />
         <br />
         <br />
         <label for="password">password</label>
         <br />
-        <input ref="password" v-model="password" type="password" id="password" required="required" />
+        <input
+          ref="password"
+          v-model="password"
+          type="password"
+          id="password"
+          required="required"
+        />
         <br />
         <br />
         <br />
@@ -32,32 +43,30 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
-import axios from "axios";
 
 export default {
   name: "Login",
   components: {
     TimeAndDate
   },
-  computed: {
-    username() {
-      return this.$root.$data.username;
-    },
-    password() {
-      return this.$root.$data.password;
-    }
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
   },
+  computed: {},
   methods: {
     login() {
       // FOR TEST ACCESS
 
       if (
-        this.$refs.username.value == "admin@admin.ru" ||
+        this.$refs.username.value == "admin@admin.ru" &&
         this.$refs.password.value == "123"
       ) {
-        this.$root.$data.username = this.$refs.username.value;
-        this.$root.$data.password = this.$refs.password.value;
-        this.$root.$data.loggedIn = true;
+        this.$store.username = this.username;
+        this.$store.password = this.password;
+        this.$store.isAuthenticated = true;
         this.$router.push("/main");
         return;
       }
@@ -67,18 +76,7 @@ export default {
       let formData = new FormData();
       formData.append("username", this.$refs.username.value);
       formData.append("password", this.$refs.password.value);
-      axios
-        .post(this.$root.$data.BACKEND_URL + "login", formData) // АДРЕС
-        .then(() => {
-          this.$root.$data.username = this.$refs.username.value;
-          this.$root.$data.password = this.$refs.password.value;
-          this.$root.$data.loggedIn = true;
-          this.$router.push("/main");
-          this.$root.$toast.success("Logged in!");
-        })
-        .catch(err =>
-          this.$root.$toast.error("Could not log in, reason:\n" + err.message)
-        );
+      this.$store.dispatch("LOGIN", formData);
     }
   }
 };

@@ -11,7 +11,9 @@ export default {
   name: "App",
   components: {},
   methods: {},
-  mounted() {}
+  mounted() {
+    this.$store.dispatch("LOGIN_FROM_STORAGE");
+  }
 };
 </script>
 
