@@ -9,12 +9,13 @@
       <form @submit.prevent="login">
         <label for="email">email</label>
         <br />
-        <input ref="username" type="email" name="j_username" id="email" required="required" />
+        <input ref="username" v-model="username" type="email" id="email" required="required" />
+        <span>{{this.username}}</span>
         <br />
         <br />
         <label for="password">password</label>
         <br />
-        <input ref="password" type="password" name="j_password" id="password" required="required" />
+        <input ref="password" v-model="password" type="password" id="password" required="required" />
         <br />
         <br />
         <br />
@@ -37,6 +38,14 @@ export default {
   name: "Login",
   components: {
     TimeAndDate
+  },
+  computed: {
+    username() {
+      return this.$root.$data.username;
+    },
+    password() {
+      return this.$root.$data.password;
+    }
   },
   methods: {
     login() {

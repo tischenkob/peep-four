@@ -61,23 +61,23 @@ export default {
       return [];
     },
     addEntry(entry) {
+      alert(this.$refs.username.value);
       axios
         .post(this.$root.$data.BACKEND_URL + "addEntry", {
           x: entry.x,
           y: entry.y,
-          r: entry.r,
-          username: this.$refs.username.value,
-          password: this.$refs.password.value
+          r: entry.r
         })
         .then(res => {
           this.entries.push(res.data);
           this.$root.$toast.success("Entry added!");
         })
-        .catch(err =>
+        .catch(err => {
+          alert(this);
           this.$root.$toast.error(
             "Could not log calculate, reason:\n" + err.message
-          )
-        );
+          );
+        });
     }
   },
   mounted() {
