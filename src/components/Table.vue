@@ -1,21 +1,25 @@
 <template>
   <table>
-    <tr>
-      <th>x</th>
-      <th>y</th>
-      <th>r</th>
-      <th>hit</th>
-    </tr>
-    <tr
-      id="table"
-      v-for="entry in entries.slice(entries.length - 9, entries.length)"
-      :key="entry.id"
-    >
-      <td>{{ entry.x }}</td>
-      <td>{{ entry.y }}</td>
-      <td>{{ entry.r }}</td>
-      <td>{{ entry.hit }}</td>
-    </tr>
+    <thead>
+      <tr>
+        <th>x</th>
+        <th>y</th>
+        <th>r</th>
+        <th>hit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        id="table"
+        v-for="entry in entries.slice(entries.length - 9, entries.length)"
+        :key="entry"
+      >
+        <td>{{ entry.x }}</td>
+        <td>{{ entry.y }}</td>
+        <td>{{ entry.r }}</td>
+        <td>{{ entry.hit }}</td>
+      </tr>
+    </tbody>
   </table>
 </template>
 
