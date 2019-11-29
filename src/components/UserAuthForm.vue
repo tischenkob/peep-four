@@ -1,16 +1,12 @@
 <template>
-  <form @submit.prevent="submit">
-    <div class="column">
-      <label for="email">email</label>
-      <input v-model="username" type="email" required="required" />
-      <label for="password">password</label>
-      <input v-model="password" type="password" required="required" />
-      <div class="row around">
-        <router-link class="link" id="link-home" to="/">
-          BACK
-        </router-link>
-        <button class="link" type="submit">SUBMIT</button>
-      </div>
+  <form class="column" @submit.prevent="submit">
+    <label for="email">email</label>
+    <input v-model="username" type="email" required="required" />
+    <label for="password">password</label>
+    <input v-model="password" type="password" required="required" />
+    <div class="row between">
+      <router-link class="link" id="link-home" to="/">BACK</router-link>
+      <a class="link" @click="submit">SUBMIT</a>
     </div>
   </form>
 </template>
@@ -46,4 +42,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+</style>

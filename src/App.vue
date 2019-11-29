@@ -96,21 +96,18 @@ body {
 .column {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .around {
   justify-content: space-around;
 }
 .between {
+  width: 100%;
   justify-content: space-between;
 }
-.submit-button {
-  color: white;
-  background-color: rgb(81, 197, 52);
-  height: 30px;
-  border-radius: 5px;
-  padding-top: 3px;
-}
+
 .link {
+  cursor: pointer;
   height: 15px;
   text-decoration: none;
   font-size: 16px;
@@ -128,14 +125,6 @@ ion-icon {
   top: -2px;
 }
 
-form {
-  height: 100%;
-}
-
-form .row {
-  width: 100%;
-}
-
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -143,5 +132,10 @@ input[type="password"] {
   height: 32px;
   border: none;
   border-bottom: 1px solid #2c3e5056;
+}
+
+.time {
+  align-self: flex-start;
+  justify-self: flex-start;
 }
 </style>

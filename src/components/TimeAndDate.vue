@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="time">
     <span id="date" :title="date">{{ day }}</span>
-    <span id="time"> {{ time }}</span>
+    <span style="margin:0 2px;"></span>
+    <span id="time">{{ time }}</span>
   </div>
 </template>
 

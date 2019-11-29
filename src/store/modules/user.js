@@ -1,7 +1,6 @@
-import axios from "axios";
+import api from "@/service/api.js";
 import router from "@/router";
-import { backend } from "../resources/url";
-import { store } from "..";
+import store from "..";
 import toast from "@/lib/toast.js";
 
 const state = {
@@ -22,17 +21,19 @@ const getters = {
 };
 const mutations = {
   LOGIN_USER: (state, payload) => {
-    let { username, password } = payload;
+    let { username, password, token } = payload;
     state.username = username;
     state.password = password;
-    localStorage.setItem("peep_username", state.username);
-    localStorage.setItem("peep_password", state.password);
+    window.localStorage.currentUser = {
+      username,
+      password,
+      token
+    };
     state.isAuthenticated = true;
     router.push("/main");
   },
   LOGOUT_USER: state => {
-    localStorage.setItem("peep_username", "");
-    localStorage.setItem("peep_password", "");
+    window.localStorage.currentUser = null;
     state.username = "";
     state.password = "";
     state.isAuthenticated = false;
@@ -50,21 +51,16 @@ const actions = {
     let formData = new FormData();
     formData.append("username", payload.username);
     formData.append("password", payload.password);
-    if (payload.username == "admin@admin.ru") {
-      context.commit("NONE", payload);
-      router.push("/login");
-      return;
-    } else {
-      axios
-        .post(backend + "register", formData)
-        .then(() => {
-          toast.success("Successfully registered!");
-          router.push("/login");
-        })
-        .catch(err => {
-          toast.error("Couldn't register:" + err.message);
-        });
-    }
+    api()
+      .post("/register", formData)
+      .then(() => {
+        toast.success("Successfully registered!");
+        toast.info("Now you should  log in");
+        router.push("/login");
+      })
+      .catch(err => {
+        toast.error("Couldn't register: " + err.message);
+      });
   },
   LOGIN: async (context, payload) => {
     let { username } = payload;
@@ -75,8 +71,8 @@ const actions = {
       context.commit("LOGIN_USER", payload);
       return;
     }
-    axios
-      .post(backend + "login", payload)
+    api()
+      .post("/login", payload)
       .then(() => {
         toast.success("Successfully logged in!");
         context.commit("LOGIN_USER", payload);
@@ -86,16 +82,15 @@ const actions = {
       });
   },
   LOGOUT: async context => {
-    axios
-      .get(backend + "logout")
+    api()
+      .get("/logout")
       .then(() => context.commit("LOGOUT_USER"))
       .catch(err => toast.error("Could not log out:" + err.message));
   },
   LOGIN_FROM_STORAGE: async () => {
-    let username = localStorage.getItem("peep_username");
-    let password = localStorage.getItem("peep_password");
-    if (username && password) {
-      store.dispatch("LOGIN", { username, password });
+    let user = window.localStorage.currentUser;
+    if (user) {
+      store.dispatch("LOGIN", user);
     }
   }
 };

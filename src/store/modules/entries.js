@@ -1,8 +1,7 @@
-import axios from "axios";
-import { backend } from "../resources/url";
+import api from "@/service/api.js";
 import toast from "@/lib/toast.js";
 
-const state = { entries: [{ x: 1, y: 2, r: 1 }] };
+const state = { entries: [] };
 const getters = {
   ENTRIES: state => {
     return state.entries;
@@ -15,23 +14,23 @@ const mutations = {
   },
   SET_ENTRIES: (state, payload) => {
     state.entries = payload;
-    toast.success("Entries loaded!");
+    toast.info("History loaded!");
   }
 };
 const actions = {
   GET_ENTRIES: async context => {
-    axios
-      .get(backend + "getEntries")
-      .then(({ data }) => {
-        context.commit("SET_ENTRIES", data);
+    api()
+      .get("/getEntries")
+      .then(res => {
+        context.commit("SET_ENTRIES", res.data);
       })
-      .catch(() => {
-        toast.error("Could not get entries");
+      .catch(err => {
+        toast.error("Could not load history because: " + err.message);
       });
   },
   POST_ENTRY: async (context, payload) => {
-    axios
-      .post(backend + "addEntry", payload)
+    api()
+      .post("/addEntry", payload)
       .then(res => {
         context.commit("ADD_ENTRY", res.data);
       })

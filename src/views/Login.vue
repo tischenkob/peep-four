@@ -1,9 +1,9 @@
 <template>
-  <div class="column">
+  <div class="column login">
     <div class="row around">
       <TimeAndDate />
     </div>
-    <div class="row around">
+    <div class="content">
       <UserAuthForm type="login"></UserAuthForm>
     </div>
   </div>
@@ -21,3 +21,16 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.login {
+  height: 100%;
+}
+.content {
+  display: inline-flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+}
+</style>

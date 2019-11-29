@@ -11,14 +11,7 @@
       <option value="4">4</option>
       <option value="5">5</option>
     </select>
-    <input
-      ref="yVal"
-      type="text"
-      name="y"
-      id="y-value"
-      placeholder="(-3 ; +5)"
-      required="required"
-    />
+    <input ref="yVal" type="text" name="y" id="y-value" placeholder="(-3 ; +5)" required="required" />
     <select name="r" ref="rVal" id="r-value" @change.prevent="changeR">
       <option value="-3" disabled="true">-3</option>
       <option value="-2" disabled="true">-2</option>
@@ -116,5 +109,12 @@ select {
 }
 input[type="text"] {
   text-align: center;
+}
+.submit-button {
+  color: white;
+  background-color: rgb(81, 197, 52);
+  height: 30px;
+  border-radius: 5px;
+  padding-top: 3px;
 }
 </style>

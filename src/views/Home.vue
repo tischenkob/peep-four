@@ -1,15 +1,9 @@
 <template>
-  <div class="home">
+  <div class="home column">
     <div class="row around">
       <TimeAndDate></TimeAndDate>
     </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <div class="column">
+    <div class="content">
       <div v-if="!isAuthenticated">
         You are not logged in:
         <router-link class="link" to="/login">log in</router-link>
@@ -17,25 +11,19 @@
         <router-link class="link" to="/register">sign up</router-link>
       </div>
       <div v-else>
-        You are logged in as: {{ username }}
-        <br />
-        <br />
-        <br />
-        <div class="row">
-          <button @click="logout" class="link">
+        <p>You are logged in as: {{ username }}</p>
+        <p>
+          <a @click="logout" class="link">
             <span>LOG OUT</span>
-          </button>
+          </a>
           <span style="margin: 0 5px;">or</span>
           <router-link class="link" to="/main">
             <span>ENTER</span>
           </router-link>
-        </div>
+        </p>
       </div>
     </div>
-
-    <br />
-    <br />
-    <ion-icon name="information-circle-outline" :title="info"></ion-icon>
+    <ion-icon id="info-icon" name="information-circle-outline" :title="info"></ion-icon>
   </div>
 </template>
 
@@ -52,8 +40,6 @@ export default {
   },
   methods: {
     logout() {
-      // TEST
-      // /
       store.dispatch("LOGOUT");
     }
   },
@@ -72,8 +58,15 @@ export default {
 </script>
 
 <style scoped>
-.link span {
-  position: relative;
-  top: -6px;
+.home {
+  height: 100%;
+}
+.content {
+  display: inline-flex;
+  align-items: center;
+  height: 80%;
+}
+#info-icon {
+  justify-self: flex-end;
 }
 </style>
