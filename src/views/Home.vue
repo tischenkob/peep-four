@@ -10,7 +10,7 @@
     <br />
     <br />
     <div class="column">
-      <div v-if="!this.$root.$data.loggedIn">
+      <div v-if="!isAuthenticated">
         You are not logged in:
         <router-link class="link" to="/login">log in</router-link>
         <span style="margin: 0 5px;">or</span>
@@ -23,13 +23,11 @@
         <br />
         <div class="row">
           <button @click="logout" class="link">
-            <ion-icon name="log-out" :title="logout"></ion-icon>
             <span>LOG OUT</span>
           </button>
           <span style="margin: 0 5px;">or</span>
           <router-link class="link" to="/main">
             <span>ENTER</span>
-            <ion-icon name="walk"></ion-icon>
           </router-link>
         </div>
       </div>
@@ -43,8 +41,7 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
-import axios from "axios";
-
+import {store} from "../store";
 export default {
   name: "Home",
   components: { TimeAndDate },
@@ -56,23 +53,20 @@ export default {
   methods: {
     logout() {
       // TEST
-      this.$root.$data.loggedIn = false;
       // /
-      axios
-        .get(this.$root.$data.BACKEND_URL + "logout") // АДРЕС
-        .then(() => {
-          this.$root.$data.loggedIn = false;
-          this.$root.$toast.info("Logged out.");
-        })
-        .catch(err =>
-          this.$root.$toast.error("Could not log out, reason:\n" + err.message)
-        );
+      store.dispatch("LOGOUT");
     }
   },
   computed: {
     username() {
-      return this.$root.$data.username;
+      return store.getters.USERNAME;
+    },
+    isAuthenticated() {
+      return store.getters.IS_AUTHENTICATED;
     }
+  },
+  mounted() {
+    () => alert(store.backend);
   }
 };
 </script>

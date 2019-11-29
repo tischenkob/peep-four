@@ -16,7 +16,11 @@
     <div class="row around">
       <CoordPlane id="coords" :entries="entries" @addentry="addEntry" />
       <keep-alive>
-        <component :is="currentTab" :entries="entries" @addentry="addEntry"></component>
+        <component
+          :is="currentTab"
+          :entries="entries"
+          @addentry="addEntry"
+        ></component>
       </keep-alive>
     </div>
   </div>
@@ -27,68 +31,41 @@ import CoordPlane from "../components/CoordPlane.vue";
 import Form from "../components/Form.vue";
 import TimeAndDate from "../components/TimeAndDate.vue";
 import Table from "../components/Table.vue";
-import axios from "axios";
+import toast from "@/lib/toast.js";
 
 export default {
   name: "Main",
   components: { CoordPlane, Form, Table, TimeAndDate },
   data() {
     return {
-      showHistory: false,
-      entries: []
+      showHistory: false
     };
   },
   computed: {
     currentTab() {
       return this.showHistory ? "Table" : "Form";
+    },
+    entries() {
+      return this.$store.getters.ENTRIES;
     }
   },
   methods: {
     getEntries() {
-      // TODO Query backend
-
-      axios
-        .get(this.$root.$data.BACKEND_URL + "getEntries")
-        .then(res => {
-          return res.data;
-        })
-        .catch(err => {
-          this.$root.$toast.error(
-            "Could not get history, reason:\n" + err.message
-          );
-        });
-
-      return [];
+      this.$store.dispatch("GET_ENTRIES");
     },
     addEntry(entry) {
-      alert(this.$refs.username.value);
-      axios
-        .post(this.$root.$data.BACKEND_URL + "addEntry", {
-          x: entry.x,
-          y: entry.y,
-          r: entry.r
-        })
-        .then(res => {
-          this.entries.push(res.data);
-          this.$root.$toast.success("Entry added!");
-        })
-        .catch(err => {
-          alert(this);
-          this.$root.$toast.error(
-            "Could not log calculate, reason:\n" + err.message
-          );
-        });
+      this.$store.dispatch("POST_ENTRY", entry);
     }
   },
   mounted() {
-    this.entries = this.getEntries();
+    this.getEntries();
   },
   beforeRouteEnter(to, from, next) {
     next(vue => {
-      if (vue.$root.$data.loggedIn) next(to);
+      if (vue.$store.isAuthenticated) next(to);
       else {
         next("/login");
-        this.$toast.info("Log in first");
+        toast.info("Log in first");
       }
     });
   }
