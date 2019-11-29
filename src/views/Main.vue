@@ -16,11 +16,7 @@
     <div class="row around">
       <CoordPlane id="coords" :entries="entries" @addentry="addEntry" />
       <keep-alive>
-        <component
-          :is="currentTab"
-          :entries="entries"
-          @addentry="addEntry"
-        ></component>
+        <component :is="currentTab" :entries="entries" @addentry="addEntry"></component>
       </keep-alive>
     </div>
   </div>
@@ -50,22 +46,18 @@ export default {
     }
   },
   methods: {
-    getEntries() {
-      this.$store.dispatch("GET_ENTRIES");
-    },
     addEntry(entry) {
       this.$store.dispatch("POST_ENTRY", entry);
     }
   },
-  mounted() {
-    this.getEntries();
-  },
   beforeRouteEnter(to, from, next) {
     next(vue => {
-      if (vue.$store.isAuthenticated) next(to);
-      else {
+      if (vue.$store.isAuthenticated) {
+        next();
+        vue.$store.dispatch("GET_ENTRIES");
+      } else {
         next("/login");
-        toast.info("Log in first");
+        toast.info("You must login");
       }
     });
   }
