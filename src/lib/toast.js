@@ -6,6 +6,6 @@ Vue.use(VueToast, {
   position: "top-left"
 });
 
- const toast = Vue.$toast;
+const toast = Vue.$toast;
 
- export default toast;
+export default toast;

@@ -41,7 +41,7 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
-import {store} from "../store";
+import { store } from "../store";
 export default {
   name: "Home",
   components: { TimeAndDate },

@@ -11,7 +11,7 @@ const getters = {
 const mutations = {
   ADD_ENTRY: (state, entry) => {
     state.entries.push(entry);
-    toast.success("Entry added!")
+    toast.success("Entry added!");
   },
   SET_ENTRIES: (state, payload) => {
     state.entries = payload;

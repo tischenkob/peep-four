@@ -22,12 +22,13 @@ const getters = {
 };
 const mutations = {
   LOGIN_USER: (state, payload) => {
-    let {username, password} = payload;
+    let { username, password } = payload;
     state.username = username;
     state.password = password;
     localStorage.setItem("peep_username", state.username);
     localStorage.setItem("peep_password", state.password);
     state.isAuthenticated = true;
+    router.push("/main");
   },
   LOGOUT_USER: state => {
     localStorage.setItem("peep_username", "");
@@ -45,7 +46,7 @@ const mutations = {
   }
 };
 const actions = {
-  REGISTER: async(context, payload) => {
+  REGISTER: async (context, payload) => {
     let formData = new FormData();
     formData.append("username", payload.username);
     formData.append("password", payload.password);
@@ -65,7 +66,7 @@ const actions = {
         });
     }
   },
-  LOGIN: async(context, payload) => {
+  LOGIN: async (context, payload) => {
     let { username } = payload;
     let formData = new FormData();
     formData.append("username", payload.username);
@@ -78,7 +79,6 @@ const actions = {
       .post(backend + "login", payload)
       .then(() => {
         toast.success("Successfully logged in!");
-
         context.commit("LOGIN_USER", payload);
       })
       .catch(err => {
@@ -91,11 +91,11 @@ const actions = {
       .then(() => context.commit("LOGOUT_USER"))
       .catch(err => toast.error("Could not log out:" + err.message));
   },
-  LOGIN_FROM_STORAGE: async() => {
+  LOGIN_FROM_STORAGE: async () => {
     let username = localStorage.getItem("peep_username");
     let password = localStorage.getItem("peep_password");
     if (username && password) {
-      store.dispatch('LOGIN', { username, password });
+      store.dispatch("LOGIN", { username, password });
     }
   }
 };

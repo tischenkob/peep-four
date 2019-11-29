@@ -11,8 +11,7 @@ export default {
   name: "App",
   components: {},
   methods: {},
-  mounted() {
-  }
+  mounted() {}
 };
 </script>
 

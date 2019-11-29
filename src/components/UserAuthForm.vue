@@ -32,9 +32,9 @@ export default {
   methods: {
     submit() {
       let user = {
-          username: this.username,
-          password: this.password
-      }  
+        username: this.username,
+        password: this.password
+      };
       this.$store.dispatch(this.operation, user);
     }
   },
