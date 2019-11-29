@@ -12,6 +12,8 @@ Vue.config.productionTip = false;
 Vue.use(axios);
 export const eventBus = new Vue();
 
+// ПРИВЕТ, ЛИЗА!!!!
+
 new Vue({
   router,
   store,
