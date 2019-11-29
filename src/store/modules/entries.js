@@ -1,5 +1,6 @@
 import axios from "axios";
 import { backend } from "../resources/url";
+import toast from "@/lib/toast.js";
 
 const state = { entries: [{ x: 1, y: 2, r: 1 }] };
 const getters = {
@@ -10,9 +11,11 @@ const getters = {
 const mutations = {
   ADD_ENTRY: (state, entry) => {
     state.entries.push(entry);
+    toast.success("Entry added!")
   },
   SET_ENTRIES: (state, payload) => {
     state.entries = payload;
+    toast.success("Entries loaded!");
   }
 };
 const actions = {
@@ -23,7 +26,7 @@ const actions = {
         context.commit("SET_ENTRIES", data);
       })
       .catch(() => {
-        alert("could not get entries");
+        toast.error("Could not get entries");
       });
   },
   POST_ENTRY: async (context, payload) => {
@@ -33,7 +36,7 @@ const actions = {
         context.commit("ADD_ENTRY", res.data);
       })
       .catch(err => {
-        alert(err.message);
+        toast.error(err.message);
       });
   }
 };

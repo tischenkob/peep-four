@@ -1,1 +1,1 @@
-export const backend = "se.ifmo.ru/s******/web4/api/";
+export const backend = "http://localhost:8082/api/";

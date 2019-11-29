@@ -31,6 +31,7 @@ import CoordPlane from "../components/CoordPlane.vue";
 import Form from "../components/Form.vue";
 import TimeAndDate from "../components/TimeAndDate.vue";
 import Table from "../components/Table.vue";
+import toast from "@/lib/toast.js";
 
 export default {
   name: "Main",
@@ -64,7 +65,7 @@ export default {
       if (vue.$store.isAuthenticated) next(to);
       else {
         next("/login");
-        this.$toast.info("Log in first");
+        toast.info("Log in first");
       }
     });
   }

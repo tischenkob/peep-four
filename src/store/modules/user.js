@@ -2,7 +2,8 @@ import axios from "axios";
 import router from "@/router";
 import { backend } from "../resources/url";
 import { store } from "..";
-// import VueToast from "vue-toast-notification";
+import toast from "@/lib/toast.js";
+
 const state = {
   username: "",
   password: "",
@@ -34,17 +35,13 @@ const mutations = {
     state.username = "";
     state.password = "";
     state.isAuthenticated = false;
+    toast.info("Logged out!");
   },
   SET_USER: (state, payload) => {
     state.username = payload;
   },
   SET_PASSWORD: (state, payload) => {
     state.password = payload;
-  },
-  NONE: (state, payload) => {
-    alert("NONE");
-    alert(state);
-    alert(payload);
   }
 };
 const actions = {
@@ -60,11 +57,11 @@ const actions = {
       axios
         .post(backend + "register", formData)
         .then(() => {
-          context.commit("NONE", payload);
+          toast.success("Successfully registered!");
           router.push("/login");
         })
         .catch(err => {
-          alert("couldn't register\n" + err.message);
+          toast.error("Couldn't register:" + err.message);
         });
     }
   },
@@ -80,17 +77,19 @@ const actions = {
     axios
       .post(backend + "login", payload)
       .then(() => {
+        toast.success("Successfully logged in!");
+
         context.commit("LOGIN_USER", payload);
       })
       .catch(err => {
-        alert("could not log in\n" + err.message);
+        toast.error("Could not log in:" + err.message);
       });
   },
   LOGOUT: async context => {
     axios
       .get(backend + "logout")
       .then(() => context.commit("LOGOUT_USER"))
-      .catch(err => alert("could not log out\n" + err.message));
+      .catch(err => toast.error("Could not log out:" + err.message));
   },
   LOGIN_FROM_STORAGE: async() => {
     let username = localStorage.getItem("peep_username");
