@@ -23,7 +23,11 @@
         </p>
       </div>
     </div>
-    <ion-icon id="info-icon" name="information-circle-outline" :title="info"></ion-icon>
+    <ion-icon
+      id="info-icon"
+      name="information-circle-outline"
+      :title="info"
+    ></ion-icon>
   </div>
 </template>
 
