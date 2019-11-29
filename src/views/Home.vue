@@ -41,7 +41,7 @@
 
 <script>
 import TimeAndDate from "../components/TimeAndDate.vue";
-
+import {store} from "../store";
 export default {
   name: "Home",
   components: { TimeAndDate },
@@ -53,21 +53,20 @@ export default {
   methods: {
     logout() {
       // TEST
-      this.$store.isAuthenticated = false;
       // /
-      this.$store.dispatch("LOGOUT");
+      store.dispatch("LOGOUT");
     }
   },
   computed: {
     username() {
-      return this.$store.username;
+      return store.getters.USERNAME;
     },
     isAuthenticated() {
-      return this.$store.isAuthenticated;
+      return store.getters.IS_AUTHENTICATED;
     }
   },
   mounted() {
-    () => alert(this.$store.BACKEND_URL);
+    () => alert(store.backend);
   }
 };
 </script>

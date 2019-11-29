@@ -10,15 +10,18 @@ const state = {
 };
 const getters = {
   USERNAME: () => {
-    return store.username;
+    return state.username;
   },
   PASSWORD: () => {
-    return store.password;
+    return state.password;
+  },
+  IS_AUTHENTICATED: () => {
+    return state.isAuthenticated;
   }
 };
 const mutations = {
   LOGIN_USER: (state, payload) => {
-    let { username, password } = payload;
+    let {username, password} = payload;
     state.username = username;
     state.password = password;
     localStorage.setItem("peep_username", state.username);
@@ -37,22 +40,40 @@ const mutations = {
   },
   SET_PASSWORD: (state, payload) => {
     state.password = payload;
+  },
+  NONE: (state, payload) => {
+    alert("NONE");
+    alert(state);
+    alert(payload);
   }
 };
 const actions = {
-  REGISTER: async (context, payload) => {
-    axios
-      .post(backend + "register", payload)
-      .then(() => {
-        router.push("/login");
-      })
-      .catch(err => {
-        alert("couldn't register\n" + err.message);
-      });
+  REGISTER: async(context, payload) => {
+    let formData = new FormData();
+    formData.append("username", payload.username);
+    formData.append("password", payload.password);
+    if (payload.username == "admin@admin.ru") {
+      context.commit("NONE", payload);
+      router.push("/login");
+      return;
+    } else {
+      axios
+        .post(backend + "register", formData)
+        .then(() => {
+          context.commit("NONE", payload);
+          router.push("/login");
+        })
+        .catch(err => {
+          alert("couldn't register\n" + err.message);
+        });
+    }
   },
-  LOGIN: async (context, payload) => {
+  LOGIN: async(context, payload) => {
     let { username } = payload;
-    if (username == "admin@admin,ru") {
+    let formData = new FormData();
+    formData.append("username", payload.username);
+    formData.append("password", payload.password);
+    if (username == "admin@admin.ru") {
       context.commit("LOGIN_USER", payload);
       return;
     }
@@ -71,11 +92,11 @@ const actions = {
       .then(() => context.commit("LOGOUT_USER"))
       .catch(err => alert("could not log out\n" + err.message));
   },
-  LOGIN_FROM_STORAGE: async context => {
-    let username = localStorage.getItem("peep_username") || "";
-    let password = localStorage.getItem("peep_password") || "";
+  LOGIN_FROM_STORAGE: async() => {
+    let username = localStorage.getItem("peep_username");
+    let password = localStorage.getItem("peep_password");
     if (username && password) {
-      this.LOGIN(context, { username, password });
+      store.dispatch('LOGIN', { username, password });
     }
   }
 };

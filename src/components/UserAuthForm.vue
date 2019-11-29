@@ -2,21 +2,9 @@
   <form @submit.prevent="submit">
     <div class="column">
       <label for="email">email</label>
-      <input
-        ref="username"
-        v-model="username"
-        type="email"
-        id="email"
-        required="required"
-      />
+      <input v-model="username" type="email" required="required" />
       <label for="password">password</label>
-      <input
-        ref="password"
-        v-model="password"
-        type="password"
-        id="password"
-        required="required"
-      />
+      <input v-model="password" type="password" required="required" />
       <div class="row around">
         <router-link class="link" id="link-home" to="/">
           BACK
@@ -43,11 +31,16 @@ export default {
   },
   methods: {
     submit() {
-      let formData = new FormData();
-      formData.append("username", this.username);
-      formData.append("password", this.password);
-      let operation = this.type === "login" ? "LOGIN" : "REGISTER";
-      this.$store.dispatch(operation, formData);
+      let user = {
+          username: this.username,
+          password: this.password
+      }  
+      this.$store.dispatch(this.operation, user);
+    }
+  },
+  computed: {
+    operation() {
+      return this.type === "login" ? "LOGIN" : "REGISTER";
     }
   }
 };
