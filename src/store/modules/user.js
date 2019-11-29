@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import { backend } from "../resources/url";
+// import VueToast from "vue-toast-notification";
 const state = {
   username: "",
   password: "",
@@ -11,11 +12,14 @@ const mutations = {
     state.username = payload.username;
     state.password = payload.password;
     localStorage.setItem("peep_username", state.username);
-    alert(localStorage.getItem("peep_username"));
     localStorage.setItem("peep_password", state.password);
     state.isAuthenticated = true;
   },
   LOGOUT_USER: state => {
+    localStorage.setItem("peep_username", "");
+    localStorage.setItem("peep_password", "");
+    state.username = "";
+    state.password = "";
     state.isAuthenticated = false;
   },
   SET_USER: (state, payload) => {
@@ -28,7 +32,7 @@ const mutations = {
 const actions = {
   REGISTER: async (context, payload) => {
     axios
-      .post(state.BACKEND_URL + "register", payload)
+      .post(backend + "register", payload)
       .then(() => {
         this.router.push("/login");
       })
@@ -38,7 +42,7 @@ const actions = {
   },
   LOGIN: async (context, payload) => {
     axios
-      .post(state.BACKEND_URL + "login", payload)
+      .post(backend + "login", payload)
       .then(() => {
         context.commit("LOGIN_USER", payload);
       })
@@ -48,14 +52,13 @@ const actions = {
   },
   LOGOUT: async context => {
     axios
-      .get(state.BACKEND_URL + "logout")
+      .get(backend + "logout")
       .then(() => context.commit("LOGOUT_USER"))
       .catch(err => alert("could not log out\n" + err.message));
   },
   LOGIN_FROM_STORAGE: async context => {
     let username = localStorage.getItem("peep_username") || "";
     let password = localStorage.getItem("peep_password") || "";
-    alert(state.BACKEND_URL);
     if (username && password) {
       this.LOGIN(context, { username, password });
     }

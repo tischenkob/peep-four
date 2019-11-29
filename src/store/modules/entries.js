@@ -1,4 +1,5 @@
 import axios from "axios";
+import { backend } from "../resources/url";
 
 const state = { entries: [{ x: 1, y: 2, r: 1 }] };
 const getters = {
@@ -17,7 +18,7 @@ const mutations = {
 const actions = {
   GET_ENTRIES: async context => {
     axios
-      .get(state.BACKEND_URL + "getEntries")
+      .get(backend + "getEntries")
       .then(({ data }) => {
         context.commit("SET_ENTRIES", data);
       })
@@ -27,7 +28,7 @@ const actions = {
   },
   POST_ENTRY: async (context, payload) => {
     axios
-      .post(state.BACKEND_URL + "addEntry", payload)
+      .post(backend + "addEntry", payload)
       .then(res => {
         context.commit("ADD_ENTRY", res.data);
       })

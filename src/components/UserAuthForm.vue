@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="login">
+  <form @submit.prevent="submit">
     <div class="column">
       <label for="email">email</label>
       <input
@@ -19,7 +19,7 @@
       />
       <div class="row around">
         <router-link class="link" id="link-home" to="/">
-        BACK
+          BACK
         </router-link>
         <button class="link" type="submit">SUBMIT</button>
       </div>
@@ -48,11 +48,6 @@ export default {
       formData.append("password", this.password);
       let operation = this.type === "login" ? "LOGIN" : "REGISTER";
       this.$store.dispatch(operation, formData);
-    },
-    computed: {
-      actionText() {
-        return this.type === "login" ? "LOG IN" : "SIGN UP";
-      }
     }
   }
 };
