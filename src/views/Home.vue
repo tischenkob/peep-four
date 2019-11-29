@@ -23,13 +23,11 @@
         <br />
         <div class="row">
           <button @click="logout" class="link">
-            <ion-icon name="log-out" :title="logout"></ion-icon>
             <span>LOG OUT</span>
           </button>
           <span style="margin: 0 5px;">or</span>
           <router-link class="link" to="/main">
             <span>ENTER</span>
-            <ion-icon name="walk"></ion-icon>
           </router-link>
         </div>
       </div>
