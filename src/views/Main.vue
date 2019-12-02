@@ -52,9 +52,8 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next(vue => {
-      if (vue.$store.isAuthenticated) {
+      if (vue.$store.getters.IS_AUTHENTICATED()) {
         next();
-        vue.$store.dispatch("GET_ENTRIES");
       } else {
         next("/login");
         toast.info("You must login");
