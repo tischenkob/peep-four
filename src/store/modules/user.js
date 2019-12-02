@@ -24,11 +24,11 @@ const mutations = {
     let { username, password, token } = payload;
     state.username = username;
     state.password = password;
-    window.localStorage.currentUser = {
+    window.localStorage.currentUser = JSON.stringify({
       username,
       password,
       token
-    };
+    });
     state.isAuthenticated = true;
     router.push("/main");
   },
