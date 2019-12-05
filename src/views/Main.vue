@@ -52,7 +52,7 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next(vue => {
-      if (vue.$store.getters.IS_AUTHENTICATED()) {
+      if (vue.$store.getters.IS_AUTHENTICATED) {
         next();
       } else {
         next("/login");

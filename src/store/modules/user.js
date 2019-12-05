@@ -1,6 +1,6 @@
 import api from "@/service/api.js";
 import router from "@/router";
-import store from "..";
+import store from "../index.js";
 import toast from "@/lib/toast.js";
 
 const state = {
@@ -30,6 +30,7 @@ const mutations = {
       token
     });
     state.isAuthenticated = true;
+    debugger;
     router.push("/main");
   },
   LOGOUT_USER: state => {
@@ -47,7 +48,7 @@ const mutations = {
   }
 };
 const actions = {
-  REGISTER: async (context, payload) => {
+  REGISTER: async (_context, payload) => {
     let formData = new FormData();
     formData.append("username", payload.username);
     formData.append("password", payload.password);
@@ -67,6 +68,7 @@ const actions = {
     let formData = new FormData();
     formData.append("username", payload.username);
     formData.append("password", payload.password);
+    debugger;
     if (username == "admin@admin.ru") {
       context.commit("LOGIN_USER", payload);
       return;
@@ -82,13 +84,18 @@ const actions = {
       });
   },
   LOGOUT: async context => {
+    if (context.getters.USERNAME == "admin@admin.ru") {
+      context.commit("LOGOUT_USER");
+      return;
+    }
     api()
       .get("/logout")
       .then(() => context.commit("LOGOUT_USER"))
       .catch(err => toast.error("Could not log out:" + err.message));
   },
   LOGIN_FROM_STORAGE: async () => {
-    let user = window.localStorage.currentUser;
+    let user = JSON.parse(window.localStorage.currentUser);
+    debugger;
     if (user) {
       store.dispatch("LOGIN", user);
     }
