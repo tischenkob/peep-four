@@ -72,7 +72,7 @@ const actions = {
       context.commit("LOGIN_USER", payload);
       return;
     }
-    api(false)
+    api()
       .post("/login", payload)
       .then(() => {
         toast.success("Successfully logged in!");
