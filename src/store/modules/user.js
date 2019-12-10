@@ -2,7 +2,6 @@ import api from "@/service/api.js";
 import router from "@/router";
 import store from "../index.js";
 import toast from "@/lib/toast.js";
-import axios from "axios";
 
 const state = {
   username: "",
