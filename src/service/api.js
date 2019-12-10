@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default (includeAuth) => {
+export default (includeAuth = true) => {
 
   let request = {
     baseURL: "/api",

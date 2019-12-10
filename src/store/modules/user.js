@@ -52,7 +52,7 @@ const actions = {
     let formData = new FormData();
     formData.append("username", payload.username);
     formData.append("password", payload.password);
-    api()
+    api(false)
       .post("/register", formData)
       .then(() => {
         toast.success("Successfully registered!");
@@ -72,7 +72,7 @@ const actions = {
       context.commit("LOGIN_USER", payload);
       return;
     }
-    api()
+    api(false)
       .post("/login", payload)
       .then(() => {
         toast.success("Successfully logged in!");
