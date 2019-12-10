@@ -48,11 +48,15 @@ export default {
   methods: {
     addEntry(entry) {
       this.$store.dispatch("POST_ENTRY", entry);
+    },
+    getEntries() {
+      this.$store.dispatch("GET_ENTRIES");
     }
   },
   beforeRouteEnter(to, from, next) {
     next(vue => {
       if (vue.$store.getters.IS_AUTHENTICATED) {
+        this.getEntries();
         next();
       } else {
         next("/login");

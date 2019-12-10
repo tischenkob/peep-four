@@ -1,15 +1,19 @@
 import axios from "axios";
 
-export default () => {
-  let currentUserString = window.localStorage.currentUser;
-  let currentUser = currentUserString ? JSON.parse(currentUserString) : "";
-  return axios.create({
-    baseURL: "http://localhost:8082/api",
+export default (includeAuth) => {
+
+  let request = {
+    baseURL: "/api",
     withCredentials: false,
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: currentUser && currentUser.token
+      "Content-Type": "application/json"
     }
-  });
+  }
+  if (includeAuth) {
+    let currentUserString = window.localStorage.currentUser;
+    let currentUser = currentUserString ? JSON.parse(currentUserString) : "";
+    request.headers.Authorization = currentUser && currentUser.token;
+  }
+  return axios.create(request);
 };

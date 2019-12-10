@@ -2,6 +2,7 @@ import api from "@/service/api.js";
 import router from "@/router";
 import store from "../index.js";
 import toast from "@/lib/toast.js";
+import axios from "axios";
 
 const state = {
   username: "",
@@ -30,7 +31,6 @@ const mutations = {
       token
     });
     state.isAuthenticated = true;
-    debugger;
     router.push("/main");
   },
   LOGOUT_USER: state => {
@@ -68,7 +68,6 @@ const actions = {
     let formData = new FormData();
     formData.append("username", payload.username);
     formData.append("password", payload.password);
-    debugger;
     if (username == "admin@admin.ru") {
       context.commit("LOGIN_USER", payload);
       return;
@@ -95,7 +94,6 @@ const actions = {
   },
   LOGIN_FROM_STORAGE: async () => {
     let user = JSON.parse(window.localStorage.currentUser);
-    debugger;
     if (user) {
       store.dispatch("LOGIN", user);
     }
